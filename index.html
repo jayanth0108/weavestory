@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Know Your Fabric</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
   <style>
     /* ========== RESET & BASE ========== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --clay:        #C6724B;
-      --clay-light:  #E8A882;
-      --cream:       #F5EFE4;
-      --linen:       #EAE0CC;
-      --bark:        #5C3D2E;
-      --bark-deep:   #3A2218;
-      --sage:        #7A8C6E;
-      --sage-light:  #B5C4A8;
-      --sand:        #D6C4A0;
-      --charcoal:    #2C2420;
-      --text:        #3A2C24;
-      --text-light:  #7A6A5A;
+      --clay: #C6724B;
+      --clay-light: #E8A882;
+      --cream: #F5EFE4;
+      --linen: #EAE0CC;
+      --bark: #5C3D2E;
+      --bark-deep: #3A2218;
+      --sage: #7A8C6E;
+      --sage-light: #B5C4A8;
+      --sand: #D6C4A0;
+      --charcoal: #2C2420;
+      --text: #3A2C24;
+      --text-light: #7A6A5A;
 
       --font-display: 'Playfair Display', serif;
-      --font-body:    'Jost', sans-serif;
+      --font-body: 'Jost', sans-serif;
 
-      --radius-sm:  8px;
-      --radius-md:  16px;
-      --radius-lg:  24px;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
       --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: var(--font-body);
@@ -50,11 +61,21 @@
       min-height: 100vh;
       animation: fadeIn 0.5s ease forwards;
     }
-    .page.active { display: block; }
+
+    .page.active {
+      display: block;
+    }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ========== NAV ========== */
@@ -68,6 +89,7 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .nav-logo {
       font-family: var(--font-display);
       font-size: 1.1rem;
@@ -75,7 +97,12 @@
       letter-spacing: 0.03em;
       cursor: pointer;
     }
-    .nav-logo span { color: var(--clay-light); font-style: italic; }
+
+    .nav-logo span {
+      color: var(--clay-light);
+      font-style: italic;
+    }
+
     .nav-back {
       background: none;
       border: none;
@@ -91,7 +118,10 @@
       gap: 6px;
       transition: color var(--transition);
     }
-    .nav-back:hover { color: var(--cream); }
+
+    .nav-back:hover {
+      color: var(--cream);
+    }
 
     /* ========== BUTTONS ========== */
     .btn {
@@ -110,30 +140,38 @@
       cursor: pointer;
       transition: all var(--transition);
     }
+
     .btn-primary {
       background: var(--clay);
       color: var(--cream);
       box-shadow: 0 4px 20px rgba(198, 114, 75, 0.4);
     }
+
     .btn-primary:hover {
       background: var(--bark);
       transform: translateY(-2px);
       box-shadow: 0 8px 28px rgba(198, 114, 75, 0.45);
     }
+
     .btn-outline {
       background: transparent;
       border: 2px solid var(--clay);
       color: var(--clay);
     }
+
     .btn-outline:hover {
       background: var(--clay);
       color: var(--cream);
     }
+
     .btn-sage {
       background: var(--sage);
       color: var(--cream);
     }
-    .btn-sage:hover { background: var(--bark); }
+
+    .btn-sage:hover {
+      background: var(--bark);
+    }
 
     /* ========== CARDS ========== */
     .card {
@@ -153,9 +191,21 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-    .chip-clay  { background: rgba(198,114,75,0.15); color: var(--clay); }
-    .chip-sage  { background: rgba(122,140,110,0.15); color: var(--sage); }
-    .chip-sand  { background: rgba(214,196,160,0.3); color: var(--bark); }
+
+    .chip-clay {
+      background: rgba(198, 114, 75, 0.15);
+      color: var(--clay);
+    }
+
+    .chip-sage {
+      background: rgba(122, 140, 110, 0.15);
+      color: var(--sage);
+    }
+
+    .chip-sand {
+      background: rgba(214, 196, 160, 0.3);
+      color: var(--bark);
+    }
 
     /* ─────────────────────────────────────────
        PAGE 1 — HOME
@@ -170,25 +220,32 @@
       overflow: hidden;
       text-align: center;
     }
+
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(198,114,75,0.2) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 20%, rgba(122,140,110,0.15) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 50%, rgba(198, 114, 75, 0.2) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, rgba(122, 140, 110, 0.15) 0%, transparent 50%);
     }
+
     /* Woven texture pattern */
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
       background-image:
-        repeating-linear-gradient(0deg,   transparent, transparent 6px, rgba(255,255,255,0.02) 6px, rgba(255,255,255,0.02) 7px),
-        repeating-linear-gradient(90deg,  transparent, transparent 6px, rgba(255,255,255,0.02) 6px, rgba(255,255,255,0.02) 7px);
+        repeating-linear-gradient(0deg, transparent, transparent 6px, rgba(255, 255, 255, 0.02) 6px, rgba(255, 255, 255, 0.02) 7px),
+        repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(255, 255, 255, 0.02) 6px, rgba(255, 255, 255, 0.02) 7px);
       pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 1; }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
     .hero-eyebrow {
       font-size: 0.7rem;
       font-weight: 600;
@@ -197,6 +254,7 @@
       color: var(--clay-light);
       margin-bottom: 16px;
     }
+
     .hero-title {
       font-family: var(--font-display);
       font-size: 3rem;
@@ -204,7 +262,12 @@
       color: var(--cream);
       margin-bottom: 8px;
     }
-    .hero-title em { color: var(--clay-light); display: block; }
+
+    .hero-title em {
+      color: var(--clay-light);
+      display: block;
+    }
+
     .hero-subtitle {
       font-size: 0.95rem;
       color: var(--sand);
@@ -213,6 +276,7 @@
       margin: 0 auto 32px;
       font-weight: 300;
     }
+
     .hero-scan-icon {
       width: 54px;
       height: 54px;
@@ -223,7 +287,9 @@
       place-items: center;
       position: relative;
     }
-    .hero-scan-icon::before, .hero-scan-icon::after {
+
+    .hero-scan-icon::before,
+    .hero-scan-icon::after {
       content: '';
       position: absolute;
       width: 12px;
@@ -231,38 +297,63 @@
       border-color: var(--clay-light);
       border-style: solid;
     }
+
     .hero-scan-icon::before {
-      top: 4px; left: 4px;
+      top: 4px;
+      left: 4px;
       border-width: 2px 0 0 2px;
     }
+
     .hero-scan-icon::after {
-      bottom: 4px; right: 4px;
+      bottom: 4px;
+      right: 4px;
       border-width: 0 2px 2px 0;
     }
+
     .qr-lines {
       display: flex;
       flex-direction: column;
       gap: 3px;
     }
+
     .qr-lines div {
       height: 2px;
       background: var(--clay);
       border-radius: 1px;
     }
-    .qr-lines div:nth-child(1) { width: 20px; }
-    .qr-lines div:nth-child(2) { width: 14px; }
-    .qr-lines div:nth-child(3) { width: 18px; }
-    .qr-lines div:nth-child(4) { width: 10px; }
+
+    .qr-lines div:nth-child(1) {
+      width: 20px;
+    }
+
+    .qr-lines div:nth-child(2) {
+      width: 14px;
+    }
+
+    .qr-lines div:nth-child(3) {
+      width: 18px;
+    }
+
+    .qr-lines div:nth-child(4) {
+      width: 10px;
+    }
 
     /* Wave divider */
     .wave-divider {
       margin-top: -2px;
       line-height: 0;
     }
-    .wave-divider svg { display: block; width: 100%; }
+
+    .wave-divider svg {
+      display: block;
+      width: 100%;
+    }
 
     /* Crafts section */
-    .section { padding: 36px 20px; }
+    .section {
+      padding: 36px 20px;
+    }
+
     .section-label {
       font-size: 0.7rem;
       font-weight: 600;
@@ -271,6 +362,7 @@
       color: var(--clay);
       margin-bottom: 6px;
     }
+
     .section-title {
       font-family: var(--font-display);
       font-size: 1.6rem;
@@ -287,7 +379,10 @@
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
     }
-    .crafts-scroll::-webkit-scrollbar { display: none; }
+
+    .crafts-scroll::-webkit-scrollbar {
+      display: none;
+    }
 
     .craft-card {
       min-width: 200px;
@@ -299,7 +394,12 @@
       position: relative;
       flex-shrink: 0;
     }
-    .craft-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(58,34,24,0.18); }
+
+    .craft-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(58, 34, 24, 0.18);
+    }
+
     .craft-card-img {
       width: 100%;
       height: 150px;
@@ -310,22 +410,37 @@
       position: relative;
       overflow: hidden;
     }
+
     .craft-card-img .pattern {
       position: absolute;
       inset: 0;
       opacity: 0.25;
     }
-    .craft-kala   .craft-card-img { background: linear-gradient(135deg, #D4A76A, #C08040); }
-    .craft-jamdani .craft-card-img { background: linear-gradient(135deg, #A8B8C8, #6080A0); }
-    .craft-madras  .craft-card-img { background: linear-gradient(135deg, #D06060, #803060); }
 
-    .craft-card-body { padding: 14px; background: #fff; }
+    .craft-kala .craft-card-img {
+      background: linear-gradient(135deg, #D4A76A, #C08040);
+    }
+
+    .craft-jamdani .craft-card-img {
+      background: linear-gradient(135deg, #A8B8C8, #6080A0);
+    }
+
+    .craft-madras .craft-card-img {
+      background: linear-gradient(135deg, #D06060, #803060);
+    }
+
+    .craft-card-body {
+      padding: 14px;
+      background: #fff;
+    }
+
     .craft-card-name {
       font-family: var(--font-display);
       font-size: 1rem;
       color: var(--bark-deep);
       margin-bottom: 4px;
     }
+
     .craft-card-region {
       font-size: 0.78rem;
       color: var(--text-light);
@@ -338,8 +453,15 @@
       padding: 40px 20px;
       text-align: center;
     }
-    .how-section .section-title { color: var(--cream); }
-    .how-section .section-label { color: var(--clay-light); }
+
+    .how-section .section-title {
+      color: var(--cream);
+    }
+
+    .how-section .section-label {
+      color: var(--clay-light);
+    }
+
     .how-steps {
       display: flex;
       flex-direction: column;
@@ -347,11 +469,13 @@
       margin-top: 28px;
       text-align: left;
     }
+
     .how-step {
       display: flex;
       gap: 16px;
       align-items: flex-start;
     }
+
     .how-step-num {
       width: 36px;
       height: 36px;
@@ -364,13 +488,19 @@
       place-items: center;
       flex-shrink: 0;
     }
+
     .how-step-text h4 {
       font-family: var(--font-display);
       font-size: 1rem;
       color: var(--cream);
       margin-bottom: 4px;
     }
-    .how-step-text p { font-size: 0.82rem; color: var(--sand); line-height: 1.6; }
+
+    .how-step-text p {
+      font-size: 0.82rem;
+      color: var(--sand);
+      line-height: 1.6;
+    }
 
     /* Footer */
     .footer {
@@ -379,31 +509,43 @@
       background: var(--linen);
       border-top: 1px solid var(--sand);
     }
-    .footer p { font-size: 0.78rem; color: var(--text-light); line-height: 1.8; }
-    .footer strong { color: var(--bark); }
+
+    .footer p {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .footer strong {
+      color: var(--bark);
+    }
 
     /* ─────────────────────────────────────────
        PAGE 2 — PRODUCT STORY
     ───────────────────────────────────────── */
     .product-hero {
       position: relative;
-      height: 300px;
-      background: linear-gradient(160deg, #8B5E3C, #C6724B, #D4A06A);
+      height: 38vh;
+      min-height: 260px;
+      background-color: var(--bark-deep);
+      background-image: url('cotton-hero.jpg');
+      background-size: cover;
+      background-position: center 40%; /* Focus on the flower/hands in the center */
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .product-hero-bg {
+
+    .product-hero::after {
+      content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 10px),
-        repeating-linear-gradient(-45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 10px);
+      /* Soft dark gradient at top to make sure any overlapping layout feels natural */
+      background: linear-gradient(180deg, rgba(44,36,32,0.2) 0%, transparent 60%);
+      pointer-events: none;
     }
-    .product-hero-emoji { font-size: 5rem; position: relative; z-index: 1; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3)); }
 
-    .product-body { padding: 0 20px 40px; }
+    .product-body {
+      padding: 0 20px 40px;
+    }
 
     .product-id-strip {
       background: var(--bark-deep);
@@ -415,17 +557,23 @@
       font-size: 0.75rem;
       letter-spacing: 0.08em;
     }
-    .product-id-strip .id-val { font-weight: 700; color: var(--clay-light); }
+
+    .product-id-strip .id-val {
+      font-weight: 700;
+      color: var(--clay-light);
+    }
 
     .product-name-block {
       padding: 24px 0 16px;
     }
+
     .product-name-block h1 {
       font-family: var(--font-display);
       font-size: 2rem;
       color: var(--bark-deep);
       line-height: 1.2;
     }
+
     .product-name-block .product-sub {
       font-size: 0.85rem;
       color: var(--text-light);
@@ -438,11 +586,13 @@
       gap: 12px;
       margin: 16px 0;
     }
+
     .info-cell {
       background: var(--linen);
       border-radius: var(--radius-sm);
       padding: 14px;
     }
+
     .info-cell-label {
       font-size: 0.68rem;
       font-weight: 600;
@@ -451,6 +601,7 @@
       color: var(--text-light);
       margin-bottom: 4px;
     }
+
     .info-cell-value {
       font-family: var(--font-display);
       font-size: 1rem;
@@ -473,6 +624,7 @@
       gap: 16px;
       align-items: center;
     }
+
     .artisan-avatar {
       width: 64px;
       height: 64px;
@@ -482,23 +634,31 @@
       place-items: center;
       font-size: 1.8rem;
       flex-shrink: 0;
-      border: 3px solid rgba(255,255,255,0.15);
+      border: 3px solid rgba(255, 255, 255, 0.15);
     }
+
     .artisan-info h3 {
       font-family: var(--font-display);
       font-size: 1.1rem;
       color: var(--cream);
     }
-    .artisan-info p { font-size: 0.8rem; color: var(--sand); margin-top: 4px; line-height: 1.6; }
+
+    .artisan-info p {
+      font-size: 0.8rem;
+      color: var(--sand);
+      margin-top: 4px;
+      line-height: 1.6;
+    }
 
     /* Sustainability */
     .sustain-block {
-      background: linear-gradient(135deg, rgba(122,140,110,0.1), rgba(181,196,168,0.15));
-      border: 1px solid rgba(122,140,110,0.3);
+      background: linear-gradient(135deg, rgba(122, 140, 110, 0.1), rgba(181, 196, 168, 0.15));
+      border: 1px solid rgba(122, 140, 110, 0.3);
       border-radius: var(--radius-md);
       padding: 18px;
       margin: 16px 0;
     }
+
     .sustain-block h3 {
       font-family: var(--font-display);
       font-size: 1rem;
@@ -508,7 +668,13 @@
       align-items: center;
       gap: 8px;
     }
-    .sustain-items { display: flex; flex-direction: column; gap: 8px; }
+
+    .sustain-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     .sustain-item {
       display: flex;
       align-items: flex-start;
@@ -517,7 +683,11 @@
       color: var(--text);
       line-height: 1.5;
     }
-    .sustain-item .si-icon { font-size: 1rem; flex-shrink: 0; }
+
+    .sustain-item .si-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
 
     .page-actions {
       display: flex;
@@ -533,26 +703,37 @@
       background: var(--bark-deep);
       padding: 36px 20px 28px;
     }
-    .video-hero-bar .section-label { color: var(--clay-light); }
-    .video-hero-bar .section-title { color: var(--cream); margin-bottom: 0; }
+
+    .video-hero-bar .section-label {
+      color: var(--clay-light);
+    }
+
+    .video-hero-bar .section-title {
+      color: var(--cream);
+      margin-bottom: 0;
+    }
 
     .video-container-wrap {
       padding: 24px 20px;
     }
+
     .video-outer {
       border-radius: var(--radius-md);
       overflow: hidden;
       background: #000;
       position: relative;
       aspect-ratio: 16/9;
-      box-shadow: 0 8px 32px rgba(58,34,24,0.25);
+      box-shadow: 0 8px 32px rgba(58, 34, 24, 0.25);
     }
-    .video-outer iframe, .video-outer video {
+
+    .video-outer iframe,
+    .video-outer video {
       width: 100%;
       height: 100%;
       border: none;
       display: block;
     }
+
     .video-placeholder {
       width: 100%;
       height: 100%;
@@ -568,15 +749,20 @@
       position: relative;
       overflow: hidden;
     }
+
     .video-placeholder::before {
       content: '';
       position: absolute;
       inset: 0;
       background-image:
-        repeating-linear-gradient(0deg,  transparent, transparent 18px, rgba(255,255,255,0.03) 18px, rgba(255,255,255,0.03) 19px),
-        repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(255,255,255,0.03) 18px, rgba(255,255,255,0.03) 19px);
+        repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(255, 255, 255, 0.03) 18px, rgba(255, 255, 255, 0.03) 19px),
+        repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(255, 255, 255, 0.03) 18px, rgba(255, 255, 255, 0.03) 19px);
     }
-    .video-placeholder:hover { background: linear-gradient(135deg, #5C3D2E, var(--clay)); }
+
+    .video-placeholder:hover {
+      background: linear-gradient(135deg, #5C3D2E, var(--clay));
+    }
+
     .play-btn-big {
       width: 64px;
       height: 64px;
@@ -586,27 +772,52 @@
       place-items: center;
       position: relative;
       z-index: 1;
-      box-shadow: 0 0 0 12px rgba(198,114,75,0.2);
+      box-shadow: 0 0 0 12px rgba(198, 114, 75, 0.2);
       transition: transform var(--transition);
     }
-    .play-btn-big:hover { transform: scale(1.1); }
-    .play-btn-big svg { width: 24px; height: 24px; fill: #fff; margin-left: 4px; }
-    .video-placeholder p { font-size: 0.85rem; color: var(--sand); position: relative; z-index: 1; }
+
+    .play-btn-big:hover {
+      transform: scale(1.1);
+    }
+
+    .play-btn-big svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+      margin-left: 4px;
+    }
+
+    .video-placeholder p {
+      font-size: 0.85rem;
+      color: var(--sand);
+      position: relative;
+      z-index: 1;
+    }
 
     /* Fabric stages */
-    .stages-section { padding: 0 20px 40px; }
+    .stages-section {
+      padding: 0 20px 40px;
+    }
+
     .stages-title {
       font-family: var(--font-display);
       font-size: 1.3rem;
       color: var(--bark-deep);
       margin-bottom: 16px;
     }
-    .stages-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .stages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
     .stage-item {
       display: flex;
       gap: 14px;
       align-items: flex-start;
     }
+
     .stage-dot {
       width: 10px;
       height: 10px;
@@ -616,6 +827,7 @@
       flex-shrink: 0;
       position: relative;
     }
+
     .stage-dot::after {
       content: '';
       position: absolute;
@@ -626,9 +838,23 @@
       height: 30px;
       background: var(--sand);
     }
-    .stage-item:last-child .stage-dot::after { display: none; }
-    .stage-content h4 { font-size: 0.9rem; font-weight: 600; color: var(--bark-deep); margin-bottom: 2px; }
-    .stage-content p { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; }
+
+    .stage-item:last-child .stage-dot::after {
+      display: none;
+    }
+
+    .stage-content h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--bark-deep);
+      margin-bottom: 2px;
+    }
+
+    .stage-content p {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
 
     /* ─────────────────────────────────────────
        PAGE 4 — SIMULATOR
@@ -638,11 +864,24 @@
       padding: 36px 20px 28px;
       text-align: center;
     }
-    .sim-header .section-label { color: var(--clay-light); }
-    .sim-header .section-title { color: var(--cream); margin-bottom: 8px; }
-    .sim-header p { font-size: 0.85rem; color: var(--sand); }
 
-    .sim-body { padding: 24px 20px; }
+    .sim-header .section-label {
+      color: var(--clay-light);
+    }
+
+    .sim-header .section-title {
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .sim-header p {
+      font-size: 0.85rem;
+      color: var(--sand);
+    }
+
+    .sim-body {
+      padding: 24px 20px;
+    }
 
     /* Stats bar */
     .sim-stats {
@@ -651,21 +890,34 @@
       gap: 10px;
       margin-bottom: 20px;
     }
+
     .sim-stat {
       background: #fff;
       border-radius: var(--radius-sm);
       padding: 12px 8px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(58,34,24,0.08);
+      box-shadow: 0 2px 8px rgba(58, 34, 24, 0.08);
     }
+
     .sim-stat-val {
       font-family: var(--font-display);
       font-size: 1.5rem;
       color: var(--bark-deep);
       line-height: 1;
     }
-    .sim-stat-val.timer-warning { color: var(--clay); }
-    .sim-stat-label { font-size: 0.65rem; color: var(--text-light); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+    .sim-stat-val.timer-warning {
+      color: var(--clay);
+    }
+
+    .sim-stat-label {
+      font-size: 0.65rem;
+      color: var(--text-light);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
 
     /* Loom grid */
     .loom-wrapper {
@@ -676,6 +928,7 @@
       overflow: hidden;
       position: relative;
     }
+
     .loom-title {
       font-size: 0.7rem;
       font-weight: 600;
@@ -685,6 +938,7 @@
       margin-bottom: 12px;
       text-align: center;
     }
+
     .loom-frame {
       position: relative;
       background: #2C1A10;
@@ -692,18 +946,21 @@
       border: 3px solid #5C3D2E;
       overflow: hidden;
     }
+
     /* Vertical warp threads */
     .loom-warps {
       display: flex;
       height: 200px;
       position: relative;
     }
+
     .warp-thread {
       flex: 1;
       background: var(--sand);
       opacity: 0.6;
       margin: 0 1px;
     }
+
     /* Woven rows */
     .woven-rows {
       position: absolute;
@@ -715,21 +972,32 @@
       gap: 1px;
       transition: all 0.2s;
     }
+
     .woven-row {
       height: 5px;
       display: flex;
       gap: 1px;
       animation: weaveIn 0.3s ease;
     }
+
     @keyframes weaveIn {
-      from { transform: scaleY(0); opacity: 0; }
-      to   { transform: scaleY(1); opacity: 1; }
+      from {
+        transform: scaleY(0);
+        opacity: 0;
+      }
+
+      to {
+        transform: scaleY(1);
+        opacity: 1;
+      }
     }
+
     .woven-cell {
       flex: 1;
       height: 100%;
       border-radius: 1px;
     }
+
     /* Shuttle animation */
     .shuttle {
       position: absolute;
@@ -745,6 +1013,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .shuttle::after {
       content: '';
       width: 6px;
@@ -778,16 +1047,18 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(58,34,24,0.85);
+      background: rgba(58, 34, 24, 0.85);
       z-index: 200;
       align-items: center;
       justify-content: center;
       padding: 24px;
     }
+
     .result-overlay.show {
       display: flex;
       animation: fadeIn 0.4s ease;
     }
+
     .result-card {
       background: var(--cream);
       border-radius: var(--radius-lg);
@@ -796,13 +1067,19 @@
       max-width: 360px;
       width: 100%;
     }
-    .result-icon { font-size: 3rem; margin-bottom: 16px; }
+
+    .result-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
     .result-title {
       font-family: var(--font-display);
       font-size: 1.5rem;
       color: var(--bark-deep);
       margin-bottom: 12px;
     }
+
     .result-highlight {
       background: linear-gradient(135deg, var(--clay), var(--clay-light));
       color: #fff;
@@ -813,7 +1090,13 @@
       font-size: 1rem;
       line-height: 1.5;
     }
-    .result-sub { font-size: 0.83rem; color: var(--text-light); line-height: 1.7; margin-bottom: 24px; }
+
+    .result-sub {
+      font-size: 0.83rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
 
     /* Progress ring */
     .progress-ring-wrap {
@@ -821,10 +1104,17 @@
       justify-content: center;
       margin-bottom: 12px;
     }
+
     .progress-ring {
       transform: rotate(-90deg);
     }
-    .progress-ring-bg { fill: none; stroke: var(--linen); stroke-width: 6; }
+
+    .progress-ring-bg {
+      fill: none;
+      stroke: var(--linen);
+      stroke-width: 6;
+    }
+
     .progress-ring-fill {
       fill: none;
       stroke: var(--clay);
@@ -846,9 +1136,10 @@
       z-index: 90;
       background: var(--bark-deep);
       display: flex;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding-bottom: env(safe-area-inset-bottom);
     }
+
     .bottom-nav-item {
       flex: 1;
       display: flex;
@@ -860,737 +1151,972 @@
       border: none;
       background: none;
       transition: all var(--transition);
-      color: rgba(255,255,255,0.4);
+      color: rgba(255, 255, 255, 0.4);
     }
-    .bottom-nav-item.active { color: var(--clay-light); }
-    .bottom-nav-item:hover { color: var(--cream); }
-    .bottom-nav-icon { font-size: 1.2rem; line-height: 1; }
-    .bottom-nav-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .bottom-nav-item.active {
+      color: var(--clay-light);
+    }
+
+    .bottom-nav-item:hover {
+      color: var(--cream);
+    }
+
+    .bottom-nav-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .bottom-nav-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
 
     /* ─── Spacing for fixed bottom nav ─── */
-    .page-content-pad { padding-bottom: 80px; }
+    .page-content-pad {
+      padding-bottom: 80px;
+    }
 
     /* ─────────────────────────────────────────
        UTILITY
     ───────────────────────────────────────── */
-    .text-center { text-align: center; }
-    .mt-4 { margin-top: 16px; }
-    .mt-8 { margin-top: 32px; }
-    .mb-4 { margin-bottom: 16px; }
-    .full-width { width: 100%; }
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-4 {
+      margin-top: 16px;
+    }
+
+    .mt-8 {
+      margin-top: 32px;
+    }
+
+    .mb-4 {
+      margin-bottom: 16px;
+    }
+
+    .full-width {
+      width: 100%;
+    }
 
     /* Shimmer loading state */
     @keyframes shimmer {
-      0%   { background-position: -300px 0; }
-      100% { background-position: 300px 0; }
+      0% {
+        background-position: -300px 0;
+      }
+
+      100% {
+        background-position: 300px 0;
+      }
     }
 
     /* Responsive cap */
     @media (min-width: 480px) {
-      .hero-title { font-size: 3.5rem; }
-      .crafts-scroll { flex-wrap: nowrap; }
+      .hero-title {
+        font-size: 3.5rem;
+      }
+
+      .crafts-scroll {
+        flex-wrap: nowrap;
+      }
     }
+
     @media (min-width: 640px) {
-      .info-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .info-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
     }
 
     /* Scroll margin for anchor behavior */
-    html { --bottom-nav-h: 60px; }
-    .scroll-area { overflow-y: auto; max-height: calc(100vh - var(--bottom-nav-h)); }
+    html {
+      --bottom-nav-h: 60px;
+    }
+
+    .scroll-area {
+      overflow-y: auto;
+      max-height: calc(100vh - var(--bottom-nav-h));
+    }
+    /* Scanner Overlay */
+    .scanner-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 300;
+      flex-direction: column;
+    }
+    .scanner-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
+    .scanner-header {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 301;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    }
+    .scanner-close {
+      background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;
+    }
+    .scanner-video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .scanner-box {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 250px; height: 250px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 16px;
+      box-shadow: 0 0 0 4000px rgba(0,0,0,0.6);
+      overflow: hidden;
+      z-index: 301;
+    }
+    .scanner-box::before, .scanner-box::after {
+      content: ''; position: absolute; width: 30px; height: 30px; border-color: #fff; border-style: solid;
+    }
+    .scanner-box::before { top: 0; left: 0; border-width: 4px 0 0 4px; border-top-left-radius: 8px;}
+    .scanner-box::after { bottom: 0; right: 0; border-width: 0 4px 4px 0; border-bottom-right-radius: 8px;}
+    .scanner-line {
+      width: 100%; height: 2px;
+      background: var(--clay);
+      position: absolute;
+      top: 0;
+      box-shadow: 0 0 8px var(--clay);
+      animation: scanAnim 2s infinite linear;
+    }
+    @keyframes scanAnim {
+      0% { top: 0; }
+      50% { top: 100%; }
+      100% { top: 0; }
+    }
+    .scanner-msg {
+      position: absolute; bottom: 40px; left: 0; right: 0;
+      text-align: center; color: #fff; font-size: 0.9rem; z-index: 301;
+      letter-spacing: 0.05em;
+    }
   </style>
 </head>
+
 <body>
 
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
      PAGE 1: HOME
 ══════════════════════════════════ -->
-<div id="page-home" class="page active page-content-pad">
+  <div id="page-home" class="page active page-content-pad">
 
-  <!-- Nav -->
-  <div class="nav">
-    <span class="nav-logo">Know Your <span>Fabric</span></span>
-    <span style="font-size:0.7rem;letter-spacing:0.12em;color:rgba(255,255,255,0.35);text-transform:uppercase;">India</span>
-  </div>
-
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-content">
-      <div class="hero-eyebrow">Every thread has a tale</div>
-      <h1 class="hero-title">Know Your<em>Fabric</em></h1>
-      <p class="hero-subtitle">
-        Scan any QR code on a handloom product to discover the artisan behind it,
-        the region it came from, and its journey to your hands.
-      </p>
-      <div class="hero-scan-icon" aria-hidden="true">
-        <div class="qr-lines">
-          <div></div><div></div><div></div><div></div>
-        </div>
-      </div>
-      <button class="btn btn-primary" onclick="goToPage('page-product')">
-        <span>🔍</span> Scan a Product QR Code
-      </button>
-    </div>
-  </div>
-
-  <!-- Wave -->
-  <div class="wave-divider">
-    <svg viewBox="0 0 375 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0 0 Q93 40 187.5 20 Q282 0 375 30 L375 0 Z" fill="#3A2218"/>
-    </svg>
-  </div>
-
-  <!-- Crafts -->
-  <div class="section">
-    <div class="section-label">Featured Crafts</div>
-    <h2 class="section-title">Explore India's<br/>Handloom Heritage</h2>
-
-    <div class="crafts-scroll">
-
-      <!-- Kala Cotton -->
-      <div class="craft-card card craft-kala" onclick="goToPage('page-product')">
-        <div class="craft-card-img">
-          <div class="pattern" style="background: repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 2px, transparent 2px, transparent 8px);"></div>
-          🌾
-        </div>
-        <div class="craft-card-body">
-          <div class="craft-card-name">Kala Cotton</div>
-          <div class="craft-card-region">Kutch, Gujarat</div>
-          <span class="chip chip-clay">Natural Fibre</span>
-        </div>
-      </div>
-
-      <!-- Jamdani -->
-      <div class="craft-card card craft-jamdani" onclick="goToPage('page-product')">
-        <div class="craft-card-img">
-          <div class="pattern" style="background: repeating-linear-gradient(30deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 6px);"></div>
-          🧵
-        </div>
-        <div class="craft-card-body">
-          <div class="craft-card-name">Jamdani Muslin</div>
-          <div class="craft-card-region">West Bengal</div>
-          <span class="chip chip-sand">UNESCO Heritage</span>
-        </div>
-      </div>
-
-      <!-- Madras -->
-      <div class="craft-card card craft-madras" onclick="goToPage('page-product')">
-        <div class="craft-card-img">
-          <div class="pattern" style="background: repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(90deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 6px);"></div>
-          🎨
-        </div>
-        <div class="craft-card-body">
-          <div class="craft-card-name">Madras Checks</div>
-          <div class="craft-card-region">Tamil Nadu</div>
-          <span class="chip chip-sage">Vegetable Dyes</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- How it works -->
-  <div class="how-section">
-    <div class="section-label">How It Works</div>
-    <h2 class="section-title">Three Simple Steps</h2>
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="how-step-num">1</div>
-        <div class="how-step-text">
-          <h4>Scan the QR Code</h4>
-          <p>Use your phone camera on any participating handloom product to reveal its story.</p>
-        </div>
-      </div>
-      <div class="how-step">
-        <div class="how-step-num">2</div>
-        <div class="how-step-text">
-          <h4>Meet the Artisan</h4>
-          <p>Learn who crafted your fabric, where they're from, and how long it took to weave.</p>
-        </div>
-      </div>
-      <div class="how-step">
-        <div class="how-step-num">3</div>
-        <div class="how-step-text">
-          <h4>Feel the Effort</h4>
-          <p>Try our weaving simulator to truly understand the skill behind every thread.</p>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:28px;">
-      <button class="btn btn-outline full-width" style="border-color:var(--clay-light);color:var(--clay-light);" onclick="goToPage('page-simulator')">
-        Try Weaving Simulator
-      </button>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <p><strong>Know Your Fabric</strong> is an initiative to connect<br/>
-    consumers with India's handloom artisan community.</p>
-    <p style="margin-top:8px;font-size:0.72rem;">Supporting 4.3 million weavers across India 🌿</p>
-  </div>
-
-</div><!-- /page-home -->
-
-
-<!-- ══════════════════════════════════
-     PAGE 2: PRODUCT STORY
-══════════════════════════════════ -->
-<div id="page-product" class="page page-content-pad">
-
-  <div class="nav">
-    <button class="nav-back" onclick="goToPage('page-home')">← Home</button>
-    <span class="nav-logo">Know Your <span>Fabric</span></span>
-    <span style="font-size:0.7rem;letter-spacing:0.12em;color:rgba(255,255,255,0.35);">
-      <button style="background:none;border:none;color:var(--clay-light);cursor:pointer;font-size:1rem;" title="Share">⬆️</button>
-    </span>
-  </div>
-
-  <!-- Product hero image area -->
-  <div class="product-hero">
-    <div class="product-hero-bg"></div>
-    <div class="product-hero-emoji">🧣</div>
-  </div>
-
-  <!-- Product ID strip -->
-  <div class="product-id-strip">
-    <span>Product ID</span>
-    <span class="id-val">KYF-KTC-2024-0087</span>
-    <span>✓ Verified</span>
-  </div>
-
-  <div class="product-body">
-
-    <!-- Name + chips -->
-    <div class="product-name-block">
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
-        <span class="chip chip-clay">Kala Cotton</span>
-        <span class="chip chip-sage">Handwoven</span>
-      </div>
-      <h1>Kutch Kala Cotton<br/>Stole</h1>
-      <p class="product-sub">Hand-spun, hand-dyed, naturally grown cotton from the Rann of Kutch</p>
+    <!-- Nav -->
+    <div class="nav">
+      <span class="nav-logo">Know Your <span>Fabric</span></span>
+      <span
+        style="font-size:0.7rem;letter-spacing:0.12em;color:rgba(255,255,255,0.35);text-transform:uppercase;">India</span>
     </div>
 
-    <!-- Info grid -->
-    <div class="info-grid">
-      <div class="info-cell">
-        <div class="info-cell-label">Fabric</div>
-        <div class="info-cell-value">Kala Cotton</div>
-      </div>
-      <div class="info-cell">
-        <div class="info-cell-label">Region</div>
-        <div class="info-cell-value">Kutch, Gujarat</div>
-      </div>
-      <div class="info-cell">
-        <div class="info-cell-label">Weave Time</div>
-        <div class="info-cell-value">~14 hours</div>
-      </div>
-      <div class="info-cell">
-        <div class="info-cell-label">Width</div>
-        <div class="info-cell-value">22 inches</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- Artisan -->
-    <div class="section-label">The Artisan</div>
-    <div class="artisan-card">
-      <div class="artisan-avatar">👨‍🎨</div>
-      <div class="artisan-info">
-        <h3>Ramesh Vankar</h3>
-        <p>
-          Master weaver with <strong style="color:var(--clay-light);">32 years</strong> of experience.<br/>
-          Member of Khamir Craft Resource Centre, Kutch.
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Every thread has a tale</div>
+        <h1 class="hero-title">Know Your<em>Fabric</em></h1>
+        <p class="hero-subtitle">
+          Scan any QR code on a handloom product to discover the artisan behind it,
+          the region it came from, and its journey to your hands.
         </p>
-      </div>
-    </div>
-    <p style="font-size:0.83rem;color:var(--text-light);line-height:1.7;margin:12px 0;">
-      Ramesh learned the ancient art of Kala Cotton weaving from his father, continuing a family tradition
-      spanning five generations. Each stole he creates is made using traditional pit looms and natural
-      indigo-based dyes, without any chemical inputs.
-    </p>
-
-    <div class="divider"></div>
-
-    <!-- Sustainability -->
-    <div class="sustain-block">
-      <h3>🌿 Sustainability Profile</h3>
-      <div class="sustain-items">
-        <div class="sustain-item">
-          <span class="si-icon">☀️</span>
-          <span>Kala Cotton is a rain-fed crop requiring <strong>zero irrigation</strong> — growing only in arid Kutch soil.</span>
+        <div class="hero-scan-icon" aria-hidden="true">
+          <div class="qr-lines">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
-        <div class="sustain-item">
-          <span class="si-icon">💧</span>
-          <span>Natural dyeing process uses <strong>85% less water</strong> than conventional fabric processing.</span>
-        </div>
-        <div class="sustain-item">
-          <span class="si-icon">♻️</span>
-          <span>Zero synthetic inputs. Fully <strong>biodegradable</strong> at end of life.</span>
-        </div>
-        <div class="sustain-item">
-          <span class="si-icon">🤝</span>
-          <span>Purchase directly supports the weaver's family — <strong>no middlemen</strong> in this supply chain.</span>
-        </div>
+        <button class="btn btn-primary" onclick="startScanner()">
+          <span>🔍</span> Scan a Product QR Code
+        </button>
       </div>
     </div>
 
-    <!-- Actions -->
-    <div class="page-actions">
-      <button class="btn btn-primary full-width" onclick="goToPage('page-video')">
-        🎬 Watch How It's Made
-      </button>
-      <button class="btn btn-outline full-width" onclick="goToPage('page-simulator')">
-        🧵 Try the Weaving Simulator
-      </button>
-    </div>
-
-  </div><!-- /product-body -->
-</div><!-- /page-product -->
-
-
-<!-- ══════════════════════════════════
-     PAGE 3: VIDEO
-══════════════════════════════════ -->
-<div id="page-video" class="page page-content-pad">
-
-  <div class="nav">
-    <button class="nav-back" onclick="goToPage('page-product')">← Product</button>
-    <span class="nav-logo">Know Your <span>Fabric</span></span>
-    <span></span>
-  </div>
-
-  <div class="video-hero-bar">
-    <div class="section-label">The Craft in Motion</div>
-    <h2 class="section-title">How This Fabric<br/>Is Made</h2>
-  </div>
-
-  <div class="video-container-wrap">
-    <div class="video-outer">
-      <!-- Placeholder — swap this iframe src with a real YouTube embed URL -->
-      <div class="video-placeholder" id="videoPlaceholder" onclick="loadVideo()">
-        <div class="play-btn-big">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <p>Watch Kala Cotton Weaving Process</p>
-        <p style="font-size:0.7rem;opacity:0.6;margin-top:-6px;">~4 minutes · Kutch, Gujarat</p>
-      </div>
-      <!-- Iframe will replace placeholder on click -->
-    </div>
-
-    <p style="font-size:0.78rem;color:var(--text-light);margin-top:12px;text-align:center;">
-      Filmed on-site at Ramesh's workshop in Bhujodi village, Kutch.
-    </p>
-  </div>
-
-  <!-- Stages -->
-  <div class="stages-section">
-    <h3 class="stages-title">The Journey of a Thread</h3>
-    <div class="stages-list">
-      <div class="stage-item">
-        <div class="stage-dot"></div>
-        <div class="stage-content">
-          <h4>1. Cotton Picking</h4>
-          <p>Kala Cotton is hand-picked from rain-fed fields in the arid Rann of Kutch during November–December.</p>
-        </div>
-      </div>
-      <div class="stage-item">
-        <div class="stage-dot"></div>
-        <div class="stage-content">
-          <h4>2. Hand Spinning (Charkha)</h4>
-          <p>Raw cotton is cleaned and spun into fine thread using a traditional charkha wheel — entirely by hand.</p>
-        </div>
-      </div>
-      <div class="stage-item">
-        <div class="stage-dot"></div>
-        <div class="stage-content">
-          <h4>3. Natural Dyeing</h4>
-          <p>Threads are dyed using plant-based pigments: indigo, turmeric, and iron mordants from local sources.</p>
-        </div>
-      </div>
-      <div class="stage-item">
-        <div class="stage-dot"></div>
-        <div class="stage-content">
-          <h4>4. Warping the Loom</h4>
-          <p>Dyed warp threads are carefully wound and mounted onto the pit loom — a process taking 2–3 hours alone.</p>
-        </div>
-      </div>
-      <div class="stage-item">
-        <div class="stage-dot"></div>
-        <div class="stage-content">
-          <h4>5. Weaving</h4>
-          <p>The artisan weaves row by row — each stole takes 12–18 hours of continuous weaving to complete.</p>
-        </div>
-      </div>
-      <div class="stage-item">
-        <div class="stage-dot"></div>
-        <div class="stage-content">
-          <h4>6. Finishing</h4>
-          <p>The finished fabric is sun-dried, checked for quality, and hand-frilled or hemmed before it reaches you.</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:28px;">
-      <button class="btn btn-primary full-width" onclick="goToPage('page-simulator')">
-        🧵 Experience the Effort — Try Simulator
-      </button>
-    </div>
-  </div>
-
-</div><!-- /page-video -->
-
-
-<!-- ══════════════════════════════════
-     PAGE 4: CRAFT EFFORT SIMULATOR
-══════════════════════════════════ -->
-<div id="page-simulator" class="page page-content-pad">
-
-  <div class="nav">
-    <button class="nav-back" onclick="goToPage('page-home')">← Home</button>
-    <span class="nav-logo">Know Your <span>Fabric</span></span>
-    <span></span>
-  </div>
-
-  <div class="sim-header">
-    <div class="section-label">Interactive Experience</div>
-    <h2 class="section-title">Feel the Craft</h2>
-    <p>Simulate 60 seconds of weaving and discover what it really takes.</p>
-  </div>
-
-  <div class="sim-body">
-
-    <!-- Stats -->
-    <div class="sim-stats">
-      <div class="sim-stat">
-        <div class="sim-stat-val" id="timerDisplay">60</div>
-        <div class="sim-stat-label">Seconds Left</div>
-      </div>
-      <div class="sim-stat">
-        <div class="sim-stat-val" id="rowsDisplay">0</div>
-        <div class="sim-stat-label">Rows Woven</div>
-      </div>
-      <div class="sim-stat">
-        <div class="sim-stat-val" id="mmDisplay">0.0</div>
-        <div class="sim-stat-label">mm of Fabric</div>
-      </div>
-    </div>
-
-    <!-- Progress ring -->
-    <div class="progress-ring-wrap">
-      <svg class="progress-ring" width="80" height="80" viewBox="0 0 80 80">
-        <circle class="progress-ring-bg" cx="40" cy="40" r="35"/>
-        <circle class="progress-ring-fill" id="progressRing" cx="40" cy="40" r="35"/>
+    <!-- Wave -->
+    <div class="wave-divider">
+      <svg viewBox="0 0 375 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 0 Q93 40 187.5 20 Q282 0 375 30 L375 0 Z" fill="#3A2218" />
       </svg>
     </div>
 
-    <!-- Loom -->
-    <div class="loom-wrapper">
-      <div class="loom-title">🪡 Your Pit Loom</div>
-      <div class="loom-frame">
-        <div class="loom-warps" id="loomWarps">
-          <!-- Warp threads injected by JS -->
+    <!-- Crafts -->
+    <div class="section">
+      <div class="section-label">Featured Crafts</div>
+      <h2 class="section-title">Explore India's<br />Handloom Heritage</h2>
+
+      <div class="crafts-scroll">
+
+        <!-- Kala Cotton -->
+        <div class="craft-card card craft-kala" onclick="goToPage('page-product')">
+          <div class="craft-card-img">
+            <div class="pattern"
+              style="background: repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 2px, transparent 2px, transparent 8px);">
+            </div>
+            🌾
+          </div>
+          <div class="craft-card-body">
+            <div class="craft-card-name">Kala Cotton</div>
+            <div class="craft-card-region">Kutch, Gujarat</div>
+            <span class="chip chip-clay">Natural Fibre</span>
+          </div>
         </div>
-        <div class="woven-rows" id="wovenRows"></div>
-        <div class="shuttle" id="shuttle"></div>
-        <div class="loom-idle-msg" id="idleMsg">Press Start to begin weaving →</div>
+
+        <!-- Jamdani -->
+        <div class="craft-card card craft-jamdani" onclick="goToPage('page-product')">
+          <div class="craft-card-img">
+            <div class="pattern"
+              style="background: repeating-linear-gradient(30deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 6px);">
+            </div>
+            🧵
+          </div>
+          <div class="craft-card-body">
+            <div class="craft-card-name">Jamdani Muslin</div>
+            <div class="craft-card-region">West Bengal</div>
+            <span class="chip chip-sand">UNESCO Heritage</span>
+          </div>
+        </div>
+
+        <!-- Madras -->
+        <div class="craft-card card craft-madras" onclick="goToPage('page-product')">
+          <div class="craft-card-img">
+            <div class="pattern"
+              style="background: repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(90deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 6px);">
+            </div>
+            🎨
+          </div>
+          <div class="craft-card-body">
+            <div class="craft-card-name">Madras Checks</div>
+            <div class="craft-card-region">Tamil Nadu</div>
+            <span class="chip chip-sage">Vegetable Dyes</span>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- Controls -->
-    <div class="sim-controls">
-      <button class="btn btn-primary full-width" id="startBtn" onclick="startSimulator()">
-        🧵 Start Weaving
+    <!-- How it works -->
+    <div class="how-section">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Three Simple Steps</h2>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">1</div>
+          <div class="how-step-text">
+            <h4>Scan the QR Code</h4>
+            <p>Use your phone camera on any participating handloom product to reveal its story.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">2</div>
+          <div class="how-step-text">
+            <h4>Meet the Artisan</h4>
+            <p>Learn who crafted your fabric, where they're from, and how long it took to weave.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">3</div>
+          <div class="how-step-text">
+            <h4>Feel the Effort</h4>
+            <p>Try our weaving simulator to truly understand the skill behind every thread.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:28px;">
+        <button class="btn btn-outline full-width" style="border-color:var(--clay-light);color:var(--clay-light);"
+          onclick="goToPage('page-simulator')">
+          Try Weaving Simulator
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p><strong>Know Your Fabric</strong> is an initiative to connect<br />
+        consumers with India's handloom artisan community.</p>
+      <p style="margin-top:8px;font-size:0.72rem;">Supporting 4.3 million weavers across India 🌿</p>
+    </div>
+
+  </div><!-- /page-home -->
+
+
+  <!-- ══════════════════════════════════
+     PAGE 2: PRODUCT STORY
+══════════════════════════════════ -->
+  <div id="page-product" class="page page-content-pad">
+
+    <div class="nav">
+      <button class="nav-back" onclick="goToPage('page-home')">← Home</button>
+      <span class="nav-logo">Know Your <span>Fabric</span></span>
+      <span style="font-size:0.7rem;letter-spacing:0.12em;color:rgba(255,255,255,0.35);">
+        <button style="background:none;border:none;color:var(--clay-light);cursor:pointer;font-size:1rem;"
+          title="Share">⬆️</button>
+      </span>
+    </div>
+
+    <!-- Product hero image area -->
+    <div class="product-hero"></div>
+
+    <!-- Product ID strip -->
+    <div class="product-id-strip">
+      <span>Product ID</span>
+      <span class="id-val">KYF-KTC-2024-0087</span>
+      <span>✓ Verified</span>
+    </div>
+
+    <div class="product-body">
+
+      <!-- Name + chips -->
+      <div class="product-name-block">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+          <span class="chip chip-clay">Kala Cotton</span>
+          <span class="chip chip-sage">Handwoven</span>
+        </div>
+        <h1>Kutch Kala Cotton<br />Stole</h1>
+        <p class="product-sub">Hand-spun, hand-dyed, naturally grown cotton from the Rann of Kutch</p>
+      </div>
+
+      <!-- Info grid -->
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="info-cell-label">Fabric</div>
+          <div class="info-cell-value">Kala Cotton</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Region</div>
+          <div class="info-cell-value">Kutch, Gujarat</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Weave Time</div>
+          <div class="info-cell-value">~14 hours</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Width</div>
+          <div class="info-cell-value">22 inches</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Artisan -->
+      <div class="section-label">The Artisan</div>
+      <div class="artisan-card">
+        <div class="artisan-avatar">👨‍🎨</div>
+        <div class="artisan-info">
+          <h3>Ramesh Vankar</h3>
+          <p>
+            Master weaver with <strong style="color:var(--clay-light);">32 years</strong> of experience.<br />
+            Member of Khamir Craft Resource Centre, Kutch.
+          </p>
+        </div>
+      </div>
+      <p style="font-size:0.83rem;color:var(--text-light);line-height:1.7;margin:12px 0;">
+        Ramesh learned the ancient art of Kala Cotton weaving from his father, continuing a family tradition
+        spanning five generations. Each stole he creates is made using traditional pit looms and natural
+        indigo-based dyes, without any chemical inputs.
+      </p>
+
+      <div class="divider"></div>
+
+      <!-- Sustainability -->
+      <div class="sustain-block">
+        <h3>🌿 Sustainability Profile</h3>
+        <div class="sustain-items">
+          <div class="sustain-item">
+            <span class="si-icon">☀️</span>
+            <span>Kala Cotton is a rain-fed crop requiring <strong>zero irrigation</strong> — growing only in arid Kutch
+              soil.</span>
+          </div>
+          <div class="sustain-item">
+            <span class="si-icon">💧</span>
+            <span>Natural dyeing process uses <strong>85% less water</strong> than conventional fabric
+              processing.</span>
+          </div>
+          <div class="sustain-item">
+            <span class="si-icon">♻️</span>
+            <span>Zero synthetic inputs. Fully <strong>biodegradable</strong> at end of life.</span>
+          </div>
+          <div class="sustain-item">
+            <span class="si-icon">🤝</span>
+            <span>Purchase directly supports the weaver's family — <strong>no middlemen</strong> in this supply
+              chain.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="page-actions">
+        <button class="btn btn-primary full-width" onclick="goToPage('page-video')">
+          🎬 Watch How It's Made
+        </button>
+        <button class="btn btn-outline full-width" onclick="goToPage('page-simulator')">
+          🧵 Try the Weaving Simulator
+        </button>
+      </div>
+
+    </div><!-- /product-body -->
+  </div><!-- /page-product -->
+
+
+  <!-- ══════════════════════════════════
+     PAGE 3: VIDEO
+══════════════════════════════════ -->
+  <div id="page-video" class="page page-content-pad">
+
+    <div class="nav">
+      <button class="nav-back" onclick="goToPage('page-product')">← Product</button>
+      <span class="nav-logo">Know Your <span>Fabric</span></span>
+      <span></span>
+    </div>
+
+    <div class="video-hero-bar">
+      <div class="section-label">The Craft in Motion</div>
+      <h2 class="section-title">How This Fabric<br />Is Made</h2>
+    </div>
+
+    <div class="video-container-wrap">
+      <div class="video-outer">
+        <!-- Placeholder — swap this iframe src with a real YouTube embed URL -->
+        <div class="video-placeholder" id="videoPlaceholder" onclick="loadVideo()">
+          <div class="play-btn-big">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+          <p>Watch Kala Cotton Weaving Process</p>
+          <p style="font-size:0.7rem;opacity:0.6;margin-top:-6px;">~4 minutes · Kutch, Gujarat</p>
+        </div>
+        <!-- Iframe will replace placeholder on click -->
+      </div>
+
+      <p style="font-size:0.78rem;color:var(--text-light);margin-top:12px;text-align:center;">
+        Filmed on-site at Ramesh's workshop in Bhujodi village, Kutch.
+      </p>
+    </div>
+
+    <!-- Stages -->
+    <div class="stages-section">
+      <h3 class="stages-title">The Journey of a Thread</h3>
+      <div class="stages-list">
+        <div class="stage-item">
+          <div class="stage-dot"></div>
+          <div class="stage-content">
+            <h4>1. Cotton Picking</h4>
+            <p>Kala Cotton is hand-picked from rain-fed fields in the arid Rann of Kutch during November–December.</p>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-dot"></div>
+          <div class="stage-content">
+            <h4>2. Hand Spinning (Charkha)</h4>
+            <p>Raw cotton is cleaned and spun into fine thread using a traditional charkha wheel — entirely by hand.</p>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-dot"></div>
+          <div class="stage-content">
+            <h4>3. Natural Dyeing</h4>
+            <p>Threads are dyed using plant-based pigments: indigo, turmeric, and iron mordants from local sources.</p>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-dot"></div>
+          <div class="stage-content">
+            <h4>4. Warping the Loom</h4>
+            <p>Dyed warp threads are carefully wound and mounted onto the pit loom — a process taking 2–3 hours alone.
+            </p>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-dot"></div>
+          <div class="stage-content">
+            <h4>5. Weaving</h4>
+            <p>The artisan weaves row by row — each stole takes 12–18 hours of continuous weaving to complete.</p>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-dot"></div>
+          <div class="stage-content">
+            <h4>6. Finishing</h4>
+            <p>The finished fabric is sun-dried, checked for quality, and hand-frilled or hemmed before it reaches you.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:28px;">
+        <button class="btn btn-primary full-width" onclick="goToPage('page-simulator')">
+          🧵 Experience the Effort — Try Simulator
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /page-video -->
+
+
+  <!-- ══════════════════════════════════
+     PAGE 4: CRAFT EFFORT SIMULATOR
+══════════════════════════════════ -->
+  <div id="page-simulator" class="page page-content-pad">
+
+    <div class="nav">
+      <button class="nav-back" onclick="goToPage('page-home')">← Home</button>
+      <span class="nav-logo">Know Your <span>Fabric</span></span>
+      <span></span>
+    </div>
+
+    <div class="sim-header">
+      <div class="section-label">Interactive Experience</div>
+      <h2 class="section-title">Feel the Craft</h2>
+      <p>Simulate 60 seconds of weaving and discover what it really takes.</p>
+    </div>
+
+    <div class="sim-body">
+
+      <!-- Stats -->
+      <div class="sim-stats">
+        <div class="sim-stat">
+          <div class="sim-stat-val" id="timerDisplay">60</div>
+          <div class="sim-stat-label">Seconds Left</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-val" id="rowsDisplay">0</div>
+          <div class="sim-stat-label">Rows Woven</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-val" id="mmDisplay">0.0</div>
+          <div class="sim-stat-label">mm of Fabric</div>
+        </div>
+      </div>
+
+      <!-- Progress ring -->
+      <div class="progress-ring-wrap">
+        <svg class="progress-ring" width="80" height="80" viewBox="0 0 80 80">
+          <circle class="progress-ring-bg" cx="40" cy="40" r="35" />
+          <circle class="progress-ring-fill" id="progressRing" cx="40" cy="40" r="35" />
+        </svg>
+      </div>
+
+      <!-- Loom -->
+      <div class="loom-wrapper">
+        <div class="loom-title">🪡 Your Pit Loom</div>
+        <div class="loom-frame">
+          <div class="loom-warps" id="loomWarps">
+            <!-- Warp threads injected by JS -->
+          </div>
+          <div class="woven-rows" id="wovenRows"></div>
+          <div class="shuttle" id="shuttle"></div>
+          <div class="loom-idle-msg" id="idleMsg">Press Start to begin weaving →</div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="sim-controls">
+        <button class="btn btn-primary full-width" id="startBtn" onclick="startSimulator()">
+          🧵 Start Weaving
+        </button>
+        <button class="btn btn-outline full-width" id="weaveBtn" onclick="weaveRow()" disabled style="display:none;">
+          ↔ Throw Shuttle (Weave a Row)
+        </button>
+        <button class="btn btn-sage full-width" id="resetBtn" onclick="resetSimulator()" style="display:none;">
+          ↺ Try Again
+        </button>
+      </div>
+
+      <!-- Context -->
+      <div class="card" style="margin-top:20px;padding:18px;">
+        <h4 style="font-family:var(--font-display);color:var(--bark-deep);margin-bottom:10px;">Real Artisan Scale</h4>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
+            <span>Rows per hour (expert weaver)</span>
+            <strong style="color:var(--bark-deep);">~2,400 rows</strong>
+          </div>
+          <div style="height:1px;background:var(--linen);"></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
+            <span>Rows for a 200cm stole</span>
+            <strong style="color:var(--bark-deep);">~28,000 rows</strong>
+          </div>
+          <div style="height:1px;background:var(--linen);"></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
+            <span>Total weaving time for this product</span>
+            <strong style="color:var(--clay);">~14 hours</strong>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sim-body -->
+  </div><!-- /page-simulator -->
+
+
+  <!-- ══════════════════════════════════
+     RESULT OVERLAY
+══════════════════════════════════ -->
+  <div class="result-overlay" id="resultOverlay">
+    <div class="result-card">
+      <div class="result-icon">🧣</div>
+      <h2 class="result-title">Time's Up!</h2>
+      <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:4px;">In 60 seconds, you wove</p>
+      <div class="result-highlight">
+        "You created <span id="resultRows">0</span> rows —<br />
+        about 1 cm of fabric.<br /><br />
+        A real artisan needs <strong>14+ hours</strong> to weave this product by hand."
+      </div>
+      <p class="result-sub">
+        Ramesh Vankar has done this for 32 years.<br />
+        Every thread you wear carries his hours, skill, and story.
+      </p>
+      <button class="btn btn-primary full-width" onclick="closeResult(); goToPage('page-product')">
+        👁 See the Full Artisan Story
       </button>
-      <button class="btn btn-outline full-width" id="weaveBtn" onclick="weaveRow()" disabled style="display:none;">
-        ↔ Throw Shuttle (Weave a Row)
-      </button>
-      <button class="btn btn-sage full-width" id="resetBtn" onclick="resetSimulator()" style="display:none;">
+      <button class="btn btn-outline full-width mt-4" onclick="closeResult(); resetSimulator()">
         ↺ Try Again
       </button>
     </div>
-
-    <!-- Context -->
-    <div class="card" style="margin-top:20px;padding:18px;">
-      <h4 style="font-family:var(--font-display);color:var(--bark-deep);margin-bottom:10px;">Real Artisan Scale</h4>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
-          <span>Rows per hour (expert weaver)</span>
-          <strong style="color:var(--bark-deep);">~2,400 rows</strong>
-        </div>
-        <div style="height:1px;background:var(--linen);"></div>
-        <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
-          <span>Rows for a 200cm stole</span>
-          <strong style="color:var(--bark-deep);">~28,000 rows</strong>
-        </div>
-        <div style="height:1px;background:var(--linen);"></div>
-        <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
-          <span>Total weaving time for this product</span>
-          <strong style="color:var(--clay);">~14 hours</strong>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /sim-body -->
-</div><!-- /page-simulator -->
-
-
-<!-- ══════════════════════════════════
-     RESULT OVERLAY
-══════════════════════════════════ -->
-<div class="result-overlay" id="resultOverlay">
-  <div class="result-card">
-    <div class="result-icon">🧣</div>
-    <h2 class="result-title">Time's Up!</h2>
-    <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:4px;">In 60 seconds, you wove</p>
-    <div class="result-highlight">
-      "You created <span id="resultRows">0</span> rows —<br/>
-      about 1 cm of fabric.<br/><br/>
-      A real artisan needs <strong>14+ hours</strong> to weave this product by hand."
-    </div>
-    <p class="result-sub">
-      Ramesh Vankar has done this for 32 years.<br/>
-      Every thread you wear carries his hours, skill, and story.
-    </p>
-    <button class="btn btn-primary full-width" onclick="closeResult(); goToPage('page-product')">
-      👁 See the Full Artisan Story
-    </button>
-    <button class="btn btn-outline full-width mt-4" onclick="closeResult(); resetSimulator()">
-      ↺ Try Again
-    </button>
   </div>
-</div>
 
 
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
+     CAMERA SCANNER UI
+══════════════════════════════════ -->
+  <div class="scanner-overlay" id="scannerOverlay">
+    <div class="scanner-header">
+      <button class="scanner-close" onclick="stopScanner()">✕</button>
+      <div style="color:#fff;font-family:var(--font-body);letter-spacing:0.1em;text-transform:uppercase;">Scan Product QR</div>
+      <div style="width:24px"></div>
+    </div>
+    <video class="scanner-video" id="scannerVideo" autoplay playsinline></video>
+    <div class="scanner-box">
+      <div class="scanner-line"></div>
+    </div>
+    <div class="scanner-msg">Point your camera at the QR code...</div>
+  </div>
+
+
+  <!-- ══════════════════════════════════
      BOTTOM NAV
 ══════════════════════════════════ -->
-<nav class="bottom-nav">
-  <button class="bottom-nav-item active" id="bnav-home" onclick="goToPage('page-home');setActiveNav('bnav-home')">
-    <span class="bottom-nav-icon">🏠</span>
-    <span class="bottom-nav-label">Home</span>
-  </button>
-  <button class="bottom-nav-item" id="bnav-product" onclick="goToPage('page-product');setActiveNav('bnav-product')">
-    <span class="bottom-nav-icon">🏷</span>
-    <span class="bottom-nav-label">Product</span>
-  </button>
-  <button class="bottom-nav-item" id="bnav-video" onclick="goToPage('page-video');setActiveNav('bnav-video')">
-    <span class="bottom-nav-icon">🎬</span>
-    <span class="bottom-nav-label">Process</span>
-  </button>
-  <button class="bottom-nav-item" id="bnav-simulator" onclick="goToPage('page-simulator');setActiveNav('bnav-simulator')">
-    <span class="bottom-nav-icon">🧵</span>
-    <span class="bottom-nav-label">Simulate</span>
-  </button>
-</nav>
+  <nav class="bottom-nav">
+    <button class="bottom-nav-item active" id="bnav-home" onclick="goToPage('page-home');setActiveNav('bnav-home')">
+      <span class="bottom-nav-icon">🏠</span>
+      <span class="bottom-nav-label">Home</span>
+    </button>
+    <button class="bottom-nav-item" id="bnav-product" onclick="goToPage('page-product');setActiveNav('bnav-product')">
+      <span class="bottom-nav-icon">🏷</span>
+      <span class="bottom-nav-label">Product</span>
+    </button>
+    <button class="bottom-nav-item" id="bnav-video" onclick="goToPage('page-video');setActiveNav('bnav-video')">
+      <span class="bottom-nav-icon">🎬</span>
+      <span class="bottom-nav-label">Process</span>
+    </button>
+    <button class="bottom-nav-item" id="bnav-simulator"
+      onclick="goToPage('page-simulator');setActiveNav('bnav-simulator')">
+      <span class="bottom-nav-icon">🧵</span>
+      <span class="bottom-nav-label">Simulate</span>
+    </button>
+  </nav>
 
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script>
+    /* ─────────────────────────────────────────
+       PAGE NAVIGATION
+    ───────────────────────────────────────── */
+    function goToPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
 
-<script>
-  /* ─────────────────────────────────────────
-     PAGE NAVIGATION
-  ───────────────────────────────────────── */
-  function goToPage(pageId) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-    window.scrollTo(0, 0);
-
-    // Sync bottom nav
-    const map = {
-      'page-home':      'bnav-home',
-      'page-product':   'bnav-product',
-      'page-video':     'bnav-video',
-      'page-simulator': 'bnav-simulator',
-    };
-    if (map[pageId]) setActiveNav(map[pageId]);
-  }
-
-  function setActiveNav(id) {
-    document.querySelectorAll('.bottom-nav-item').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-
-  /* ─────────────────────────────────────────
-     VIDEO HANDLER
-  ───────────────────────────────────────── */
-  function loadVideo() {
-    const placeholder = document.getElementById('videoPlaceholder');
-    const wrapper = placeholder.parentElement;
-
-    // Replace placeholder with YouTube embed
-    // Swap the video ID below with a real Kala Cotton weaving video
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
-
-    wrapper.innerHTML = '';
-    wrapper.appendChild(iframe);
-  }
-
-  /* ─────────────────────────────────────────
-     WEAVING SIMULATOR
-  ───────────────────────────────────────── */
-  const WARP_COUNT = 20;
-  const TOTAL_TIME = 60; // seconds
-
-  let simTimer    = null;
-  let timeLeft    = TOTAL_TIME;
-  let rowsWoven   = 0;
-  let simRunning  = false;
-  let shuttleDir  = 1; // 1=right, -1=left
-
-  // Warp thread colors
-  const WARP_COLORS = ['#C8A87A', '#B89060', '#D4B88A', '#A87848', '#C09060'];
-
-  // Weft colors (row colors cycle)
-  const WEFT_COLORS = [
-    '#C6724B', '#8B5E3C', '#D4A06A', '#7A8C6E', '#B5A070',
-    '#5C3D2E', '#E8A882', '#A0784A', '#6A8058', '#C09060'
-  ];
-
-  function initLoom() {
-    const warps = document.getElementById('loomWarps');
-    warps.innerHTML = '';
-    for (let i = 0; i < WARP_COUNT; i++) {
-      const t = document.createElement('div');
-      t.className = 'warp-thread';
-      t.style.background = WARP_COLORS[i % WARP_COLORS.length];
-      warps.appendChild(t);
+      // Sync bottom nav
+      const map = {
+        'page-home': 'bnav-home',
+        'page-product': 'bnav-product',
+        'page-video': 'bnav-video',
+        'page-simulator': 'bnav-simulator',
+      };
+      if (map[pageId]) setActiveNav(map[pageId]);
     }
-    document.getElementById('wovenRows').innerHTML = '';
-  }
 
-  function startSimulator() {
-    if (simRunning) return;
-    simRunning = true;
-    rowsWoven  = 0;
-    timeLeft   = TOTAL_TIME;
+    function setActiveNav(id) {
+      document.querySelectorAll('.bottom-nav-item').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
 
-    document.getElementById('idleMsg').style.display = 'none';
-    document.getElementById('startBtn').style.display = 'none';
-    document.getElementById('weaveBtn').style.display = 'flex';
-    document.getElementById('weaveBtn').disabled = false;
-    document.getElementById('resetBtn').style.display = 'none';
+    /* ─────────────────────────────────────────
+       VIDEO HANDLER
+    ───────────────────────────────────────── */
+    function loadVideo() {
+      const placeholder = document.getElementById('videoPlaceholder');
+      const wrapper = placeholder.parentElement;
 
-    updateStats();
+      // YouTube strict configurations block this from playing directly inside an iframe on local files.
+      // Easiest and most reliable fallback is opening it smoothly in a new tab.
+      window.open('https://youtube.com/shorts/nhuHVS_NWs4?feature=share', '_blank');
+    }
 
-    simTimer = setInterval(() => {
-      timeLeft--;
+    /* ─────────────────────────────────────────
+       WEAVING SIMULATOR
+    ───────────────────────────────────────── */
+    const WARP_COUNT = 20;
+    const TOTAL_TIME = 60; // seconds
+
+    let simTimer = null;
+    let timeLeft = TOTAL_TIME;
+    let rowsWoven = 0;
+    let simRunning = false;
+    let shuttleDir = 1; // 1=right, -1=left
+
+    // Warp thread colors
+    const WARP_COLORS = ['#C8A87A', '#B89060', '#D4B88A', '#A87848', '#C09060'];
+
+    // Weft colors (row colors cycle)
+    const WEFT_COLORS = [
+      '#C6724B', '#8B5E3C', '#D4A06A', '#7A8C6E', '#B5A070',
+      '#5C3D2E', '#E8A882', '#A0784A', '#6A8058', '#C09060'
+    ];
+
+    function initLoom() {
+      const warps = document.getElementById('loomWarps');
+      warps.innerHTML = '';
+      for (let i = 0; i < WARP_COUNT; i++) {
+        const t = document.createElement('div');
+        t.className = 'warp-thread';
+        t.style.background = WARP_COLORS[i % WARP_COLORS.length];
+        warps.appendChild(t);
+      }
+      document.getElementById('wovenRows').innerHTML = '';
+    }
+
+    function startSimulator() {
+      if (simRunning) return;
+      simRunning = true;
+      rowsWoven = 0;
+      timeLeft = TOTAL_TIME;
+
+      document.getElementById('idleMsg').style.display = 'none';
+      document.getElementById('startBtn').style.display = 'none';
+      document.getElementById('weaveBtn').style.display = 'flex';
+      document.getElementById('weaveBtn').disabled = false;
+      document.getElementById('resetBtn').style.display = 'none';
+
       updateStats();
 
-      // Warning color for last 10s
-      const td = document.getElementById('timerDisplay');
-      td.classList.toggle('timer-warning', timeLeft <= 10);
+      simTimer = setInterval(() => {
+        timeLeft--;
+        updateStats();
 
-      if (timeLeft <= 0) endSimulator();
-    }, 1000);
-  }
+        // Warning color for last 10s
+        const td = document.getElementById('timerDisplay');
+        td.classList.toggle('timer-warning', timeLeft <= 10);
 
-  function weaveRow() {
-    if (!simRunning) return;
-
-    rowsWoven++;
-
-    // Animate shuttle
-    animateShuttle();
-
-    // Add woven row
-    const rowEl = document.createElement('div');
-    rowEl.className = 'woven-row';
-    const color = WEFT_COLORS[rowsWoven % WEFT_COLORS.length];
-
-    for (let i = 0; i < WARP_COUNT; i++) {
-      const cell = document.createElement('div');
-      cell.className = 'woven-cell';
-      // Alternate over-under pattern
-      cell.style.background = (i % 2 === rowsWoven % 2) ? color : WARP_COLORS[i % WARP_COLORS.length];
-      rowEl.appendChild(cell);
+        if (timeLeft <= 0) endSimulator();
+      }, 1000);
     }
 
-    const container = document.getElementById('wovenRows');
-    container.prepend(rowEl);
+    function weaveRow() {
+      if (!simRunning) return;
 
-    // Keep max visible rows for performance
-    while (container.children.length > 40) container.removeChild(container.lastChild);
+      rowsWoven++;
 
-    updateStats();
+      // Animate shuttle
+      animateShuttle();
 
-    // Visual feedback pulse
-    document.getElementById('weaveBtn').style.transform = 'scale(0.96)';
-    setTimeout(() => document.getElementById('weaveBtn').style.transform = '', 100);
-  }
+      // Add woven row
+      const rowEl = document.createElement('div');
+      rowEl.className = 'woven-row';
+      const color = WEFT_COLORS[rowsWoven % WEFT_COLORS.length];
 
-  function animateShuttle() {
-    const shuttle = document.getElementById('shuttle');
-    const frame = shuttle.parentElement;
-    const w = frame.offsetWidth;
+      for (let i = 0; i < WARP_COUNT; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'woven-cell';
+        // Alternate over-under pattern
+        cell.style.background = (i % 2 === rowsWoven % 2) ? color : WARP_COLORS[i % WARP_COLORS.length];
+        rowEl.appendChild(cell);
+      }
 
-    // Move shuttle across
-    shuttle.style.left = shuttleDir === 1 ? '0px' : (w - 30) + 'px';
-    requestAnimationFrame(() => {
-      shuttle.style.transition = 'left 0.35s ease';
-      shuttle.style.left = shuttleDir === 1 ? (w - 30) + 'px' : '0px';
-    });
-    shuttleDir *= -1;
-  }
+      const container = document.getElementById('wovenRows');
+      container.prepend(rowEl);
 
-  function updateStats() {
-    document.getElementById('timerDisplay').textContent = timeLeft;
-    document.getElementById('rowsDisplay').textContent  = rowsWoven;
-    // Each row ≈ 0.07mm of fabric (rough approximation for cotton)
-    const mm = (rowsWoven * 0.07).toFixed(1);
-    document.getElementById('mmDisplay').textContent = mm;
+      // Keep max visible rows for performance
+      while (container.children.length > 40) container.removeChild(container.lastChild);
 
-    // Progress ring: circumference=220
-    const pct = (TOTAL_TIME - timeLeft) / TOTAL_TIME;
-    const offset = 220 - (pct * 220);
-    document.getElementById('progressRing').style.strokeDashoffset = offset;
-  }
+      updateStats();
 
-  function endSimulator() {
-    clearInterval(simTimer);
-    simRunning = false;
+      // Visual feedback pulse
+      document.getElementById('weaveBtn').style.transform = 'scale(0.96)';
+      setTimeout(() => document.getElementById('weaveBtn').style.transform = '', 100);
+    }
 
-    document.getElementById('weaveBtn').disabled = true;
-    document.getElementById('resetBtn').style.display = 'flex';
+    function animateShuttle() {
+      const shuttle = document.getElementById('shuttle');
+      const frame = shuttle.parentElement;
+      const w = frame.offsetWidth;
 
-    document.getElementById('resultRows').textContent = rowsWoven;
-    document.getElementById('resultOverlay').classList.add('show');
-  }
+      // Move shuttle across
+      shuttle.style.left = shuttleDir === 1 ? '0px' : (w - 30) + 'px';
+      requestAnimationFrame(() => {
+        shuttle.style.transition = 'left 0.35s ease';
+        shuttle.style.left = shuttleDir === 1 ? (w - 30) + 'px' : '0px';
+      });
+      shuttleDir *= -1;
+    }
 
-  function closeResult() {
-    document.getElementById('resultOverlay').classList.remove('show');
-  }
+    function updateStats() {
+      document.getElementById('timerDisplay').textContent = timeLeft;
+      document.getElementById('rowsDisplay').textContent = rowsWoven;
+      // Each row ≈ 0.07mm of fabric (rough approximation for cotton)
+      const mm = (rowsWoven * 0.07).toFixed(1);
+      document.getElementById('mmDisplay').textContent = mm;
 
-  function resetSimulator() {
-    clearInterval(simTimer);
-    simRunning = false;
-    timeLeft   = TOTAL_TIME;
-    rowsWoven  = 0;
+      // Progress ring: circumference=220
+      const pct = (TOTAL_TIME - timeLeft) / TOTAL_TIME;
+      const offset = 220 - (pct * 220);
+      document.getElementById('progressRing').style.strokeDashoffset = offset;
+    }
 
-    document.getElementById('timerDisplay').textContent = TOTAL_TIME;
-    document.getElementById('timerDisplay').classList.remove('timer-warning');
-    document.getElementById('rowsDisplay').textContent  = '0';
-    document.getElementById('mmDisplay').textContent    = '0.0';
-    document.getElementById('progressRing').style.strokeDashoffset = 220;
+    function endSimulator() {
+      clearInterval(simTimer);
+      simRunning = false;
 
-    document.getElementById('idleMsg').style.display = 'flex';
-    document.getElementById('startBtn').style.display = 'flex';
-    document.getElementById('weaveBtn').style.display = 'none';
-    document.getElementById('weaveBtn').disabled = true;
-    document.getElementById('resetBtn').style.display = 'none';
+      document.getElementById('weaveBtn').disabled = true;
+      document.getElementById('resetBtn').style.display = 'flex';
 
-    // Reset shuttle
-    const shuttle = document.getElementById('shuttle');
-    shuttle.style.transition = 'none';
-    shuttle.style.left = '-30px';
+      document.getElementById('resultRows').textContent = rowsWoven;
+      document.getElementById('resultOverlay').classList.add('show');
+    }
 
+    function closeResult() {
+      document.getElementById('resultOverlay').classList.remove('show');
+    }
+
+    function resetSimulator() {
+      clearInterval(simTimer);
+      simRunning = false;
+      timeLeft = TOTAL_TIME;
+      rowsWoven = 0;
+
+      document.getElementById('timerDisplay').textContent = TOTAL_TIME;
+      document.getElementById('timerDisplay').classList.remove('timer-warning');
+      document.getElementById('rowsDisplay').textContent = '0';
+      document.getElementById('mmDisplay').textContent = '0.0';
+      document.getElementById('progressRing').style.strokeDashoffset = 220;
+
+      document.getElementById('idleMsg').style.display = 'flex';
+      document.getElementById('startBtn').style.display = 'flex';
+      document.getElementById('weaveBtn').style.display = 'none';
+      document.getElementById('weaveBtn').disabled = true;
+      document.getElementById('resetBtn').style.display = 'none';
+
+      // Reset shuttle
+      const shuttle = document.getElementById('shuttle');
+      shuttle.style.transition = 'none';
+      shuttle.style.left = '-30px';
+
+      initLoom();
+    }
+
+    /* ─────────────────────────────────────────
+       CAMERA SCANNER
+    ───────────────────────────────────────── */
+    let scannerStream = null;
+    let scanAnimationFrame = null;
+
+    // Create an offscreen canvas for QR analysis
+    const scanCanvasEl = document.createElement('canvas');
+    const scanCtx = scanCanvasEl.getContext('2d', { willReadFrequently: true });
+
+    async function startScanner() {
+      const overlay = document.getElementById('scannerOverlay');
+      const video = document.getElementById('scannerVideo');
+      overlay.classList.add('show');
+      
+      try {
+        scannerStream = await navigator.mediaDevices.getUserMedia({ 
+          video: { facingMode: 'environment' } 
+        });
+        video.srcObject = scannerStream;
+        
+        // Wait for video metadata to set canvas size and begin scanning
+        video.onloadedmetadata = () => {
+          video.play();
+          scanAnimationFrame = requestAnimationFrame(tickScan);
+        };
+      } catch (err) {
+        console.warn("Camera access denied or error: ", err);
+        // Fallback or permission denial: simulate a quick scan animation over black
+        setTimeout(() => {
+          stopScanner();
+          goToPage('page-product');
+        }, 1500);
+      }
+    }
+
+    function tickScan() {
+      const video = document.getElementById('scannerVideo');
+      if (video.readyState === video.HAVE_ENOUGH_DATA && scannerStream) {
+        scanCanvasEl.height = video.videoHeight;
+        scanCanvasEl.width = video.videoWidth;
+        scanCtx.drawImage(video, 0, 0, scanCanvasEl.width, scanCanvasEl.height);
+        
+        try {
+          const imageData = scanCtx.getImageData(0, 0, scanCanvasEl.width, scanCanvasEl.height);
+          
+          if (typeof jsQR !== 'undefined') {
+            // Find QR code in the image data
+            const code = jsQR(imageData.data, imageData.width, imageData.height, {
+              inversionAttempts: "dontInvert",
+            });
+            
+            if (code && code.data) {
+              console.log("Decoded QR Code:", code.data);
+              stopScanner();
+              
+              // This checks if the QR code is exactly the YouTube link you shared, 
+              // or if it contains your specific video ID, or if it's a Canva link.
+              const isVerifiedKalaCottonQR = 
+                code.data === "https://youtube.com/shorts/nhuHVS_NWs4?feature=share" ||
+                code.data.includes("nhuHVS_NWs4") || 
+                code.data.toLowerCase().includes("canva");
+              
+              // Strict verification check!
+              if (isVerifiedKalaCottonQR) {
+                 // Valid! Show the Kala Cotton product safely.
+                 document.querySelector('.id-val').innerText = 'KYF-KTC-2024-0087';
+                 goToPage('page-product');
+              } else {
+                 // Invalid / some other random black-and-white QR code. Reject it!
+                 alert("⚠️ Unrecognized QR Code scanned.\n\nThis app only opens the secure Kala Cotton product QR code.\n\n(Developer Note — The code you just scanned says: " + code.data + ")");
+              }
+              
+              return; // Halt the scan loop
+            }
+          }
+        } catch(e) { console.error("Canvas error:", e); }
+      }
+      
+      // Continue next frame
+      if(scannerStream) {
+        scanAnimationFrame = requestAnimationFrame(tickScan);
+      }
+    }
+
+    function stopScanner() {
+      if (scanAnimationFrame) cancelAnimationFrame(scanAnimationFrame);
+      
+      const overlay = document.getElementById('scannerOverlay');
+      overlay.classList.remove('show');
+      
+      if (scannerStream) {
+        scannerStream.getTracks().forEach(track => track.stop());
+        scannerStream = null;
+      }
+      document.getElementById('scannerVideo').srcObject = null;
+    }
+
+    /* ─── Init ─── */
     initLoom();
-  }
-
-  /* ─── Init ─── */
-  initLoom();
-</script>
+  </script>
 </body>
+
 </html>
