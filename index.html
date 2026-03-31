@@ -955,8 +955,11 @@
       position: relative;
       background: #121611;
       border-radius: 8px;
-      border: 3px solid #2A3427;
+      border: 6px solid #2a221b; /* Woody frame */
+      border-top-width: 12px;
+      border-bottom-width: 12px;
       overflow: hidden;
+      perspective: 800px; /* For 3D warp shedding effect */
     }
 
     /* Vertical warp threads */
@@ -971,6 +974,21 @@
       background: var(--sand);
       opacity: 0.6;
       margin: 0 1px;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s;
+    }
+
+    /* Active shedding states (Heddles open) */
+    .warp-up {
+      transform: translateZ(10px) translateY(-5px);
+      background: #E8E5DF;
+      opacity: 0.9;
+      box-shadow: 0 5px 8px rgba(0,0,0,0.5);
+    }
+
+    .warp-down {
+      transform: translateZ(-10px) translateY(5px);
+      background: #A9A081;
+      opacity: 0.3;
     }
 
     /* Woven rows */
@@ -981,33 +999,46 @@
       right: 0;
       display: flex;
       flex-direction: column-reverse;
-      gap: 1px;
+      gap: 0px;
       transition: all 0.2s;
     }
 
     .woven-row {
-      height: 5px;
+      height: 6px;
       display: flex;
-      gap: 1px;
+      gap: 0px;
+      margin-top: -1px; /* Slight overlap for twisted realism */
       animation: weaveIn 0.3s ease;
     }
 
     @keyframes weaveIn {
-      from {
-        transform: scaleY(0);
-        opacity: 0;
-      }
-
-      to {
-        transform: scaleY(1);
-        opacity: 1;
-      }
+      from { transform: scaleY(0); opacity: 0; }
+      to { transform: scaleY(1); opacity: 1; }
     }
 
     .woven-cell {
       flex: 1;
       height: 100%;
-      border-radius: 1px;
+      border-radius: 2px;
+    }
+
+    /* Horizontal Beater (Slay) */
+    .beater {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 14px;
+      background: linear-gradient(180deg, #4a3b32, #2a221b);
+      border-bottom: 2px solid #1a1611;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.4);
+      transform: translateY(-20px);
+      transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 10;
+    }
+
+    .beater.strike {
+      transform: translateY(182px); /* Slams down to pack the thread */
     }
 
     /* Shuttle animation */
@@ -1020,10 +1051,11 @@
       background: var(--clay);
       border-radius: 5px;
       transform: translateY(-50%);
-      transition: left 0.4s ease;
+      transition: left 0.15s linear; /* Faster logic */
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 5;
     }
 
     .shuttle::after {
@@ -1745,6 +1777,7 @@
       <div class="loom-wrapper">
         <div class="loom-title">🪡 Your Pit Loom</div>
         <div class="loom-frame">
+          <div class="beater" id="beater"></div>
           <div class="loom-warps" id="loomWarps">
             <!-- Warp threads injected by JS -->
           </div>
@@ -1756,13 +1789,33 @@
 
       <!-- Controls -->
       <div class="sim-controls">
+        <style>
+          @keyframes shakeErr { 0%, 100% {transform:translateX(0);} 25% {transform:translateX(-6px);} 75% {transform:translateX(6px);} }
+          .shake { animation: shakeErr 0.2s ease-in-out; }
+          .loom-error { opacity:0; color:#b73a3a; font-size:0.8rem; font-weight:600; text-align:center; height:1.2rem; margin-bottom:8px; transition:opacity 0.2s; }
+          .console-btn { flex:1; padding:12px 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; font-size:0.8rem; transition:all 0.2s;}
+          .console-btn span { font-size:1.5rem; }
+        </style>
         <button class="btn btn-primary full-width" id="startBtn" onclick="startSimulator()">
-          🧵 Start Weaving
+          🧵 Start Weaving Simulator
         </button>
-        <button class="btn btn-outline full-width" id="weaveBtn" onclick="weaveRow()" disabled style="display:none;">
-          ↔ Throw Shuttle (Weave a Row)
-        </button>
-        <button class="btn btn-sage full-width" id="resetBtn" onclick="resetSimulator()" style="display:none;">
+        
+        <div id="activeConsole" style="display:none; width:100%;">
+          <div class="loom-error" id="loomError">Error message</div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-outline console-btn" id="btnPedal" onclick="actionPedal()">
+              <span>🦶</span> Pedal
+            </button>
+            <button class="btn btn-outline console-btn" id="btnShuttle" onclick="actionShuttle()">
+              <span>🧵</span> Shuttle
+            </button>
+            <button class="btn btn-outline console-btn" id="btnBeater" onclick="actionBeater()">
+              <span>🪵</span> Beater
+            </button>
+          </div>
+        </div>
+
+        <button class="btn btn-sage full-width" id="resetBtn" onclick="resetSimulator()" style="display:none; margin-top:12px;">
           ↺ Try Again
         </button>
       </div>
@@ -1908,7 +1961,7 @@
     let rowsWoven = 0;
     let simRunning = false;
     let shuttleDir = 1; // 1=right, -1=left
-
+    let loomState = 0; // 0=Idle, 1=ShedOpen, 2=ShuttleThrown
     // Warp thread colors
     const WARP_COLORS = ['#C8A87A', '#B89060', '#D4B88A', '#A87848', '#C09060'];
 
@@ -1938,9 +1991,10 @@
 
       document.getElementById('idleMsg').style.display = 'none';
       document.getElementById('startBtn').style.display = 'none';
-      document.getElementById('weaveBtn').style.display = 'flex';
-      document.getElementById('weaveBtn').disabled = false;
+      document.getElementById('activeConsole').style.display = 'block';
       document.getElementById('resetBtn').style.display = 'none';
+      loomState = 0;
+      updateConsoleUI();
 
       updateStats();
 
@@ -1956,36 +2010,113 @@
       }, 1000);
     }
 
-    function weaveRow() {
+    function updateConsoleUI() {
       if (!simRunning) return;
+      document.getElementById('btnPedal').className = (loomState === 0) ? 'btn btn-primary console-btn' : 'btn btn-outline console-btn';
+      document.getElementById('btnShuttle').className = (loomState === 1) ? 'btn btn-primary console-btn' : 'btn btn-outline console-btn';
+      document.getElementById('btnBeater').className = (loomState === 2) ? 'btn btn-primary console-btn' : 'btn btn-outline console-btn';
+    }
 
-      rowsWoven++;
+    function showError(msg) {
+      const err = document.getElementById('loomError');
+      err.textContent = msg;
+      err.style.opacity = '1';
+      document.getElementById('activeConsole').classList.add('shake');
+      setTimeout(() => document.getElementById('activeConsole').classList.remove('shake'), 200);
+      setTimeout(() => err.style.opacity = '0', 2500);
+      if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+    }
 
-      // Animate shuttle
-      animateShuttle();
-
-      // Add woven row
-      const rowEl = document.createElement('div');
-      rowEl.className = 'woven-row';
-      const color = WEFT_COLORS[rowsWoven % WEFT_COLORS.length];
-
-      for (let i = 0; i < WARP_COUNT; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'woven-cell';
-        // Alternate over-under pattern
-        cell.style.background = (i % 2 === rowsWoven % 2) ? color : WARP_COLORS[i % WARP_COLORS.length];
-        rowEl.appendChild(cell);
+    function actionPedal() {
+      if (!simRunning) return;
+      if (loomState !== 0) {
+        if (loomState === 1) showError("Shed is already open! Throw the shuttle.");
+        else showError("Finish the row! Pull the beater first.");
+        return;
       }
-      const container = document.getElementById('wovenRows');
-      container.prepend(rowEl);
-      // Keep max visible rows for performance
-      while (container.children.length > 40) container.removeChild(container.lastChild);
+      loomState = 1;
+      document.getElementById('btnPedal').style.transform = 'scale(0.92)';
+      setTimeout(() => document.getElementById('btnPedal').style.transform = '', 100);
 
-      updateStats();
+      // STEP 1: SHEDDING
+      const warps = document.getElementById('loomWarps').children;
+      const isEvenRow = rowsWoven % 2 === 0;
+      for (let i = 0; i < warps.length; i++) {
+        if ((i % 2 === 0) === isEvenRow) {
+          warps[i].classList.add('warp-up');
+        } else {
+          warps[i].classList.add('warp-down');
+        }
+      }
+      updateConsoleUI();
+    }
 
-      // Visual feedback pulse
-      document.getElementById('weaveBtn').style.transform = 'scale(0.96)';
-      setTimeout(() => document.getElementById('weaveBtn').style.transform = '', 100);
+    function actionShuttle() {
+      if (!simRunning) return;
+      if (loomState === 0) {
+        showError("The threads are closed! Press the pedal first.");
+        return;
+      }
+      if (loomState === 2) {
+        showError("Already thrown! Pull the beater down.");
+        return;
+      }
+      loomState = 2;
+      document.getElementById('btnShuttle').style.transform = 'scale(0.92)';
+      setTimeout(() => document.getElementById('btnShuttle').style.transform = '', 100);
+
+      // STEP 2: PICKING
+      animateShuttle();
+      updateConsoleUI();
+    }
+
+    function actionBeater() {
+      if (!simRunning) return;
+      if (loomState === 0) {
+        showError("You haven't opened the threads!");
+        return;
+      }
+      if (loomState === 1) {
+        showError("You haven't thrown the yarn yet!");
+        return;
+      }
+      // Valid beat
+      loomState = 0; 
+      updateConsoleUI();
+      document.getElementById('btnBeater').style.transform = 'scale(0.92)';
+      setTimeout(() => document.getElementById('btnBeater').style.transform = '', 100);
+      
+      // STEP 3: BEATING UP
+      const beater = document.getElementById('beater');
+      beater.classList.add('strike');
+      if (navigator.vibrate) navigator.vibrate(40);
+
+      setTimeout(() => {
+        beater.classList.remove('strike');
+        const warps = document.getElementById('loomWarps').children;
+        for (let i = 0; i < warps.length; i++) {
+          warps[i].classList.remove('warp-up', 'warp-down');
+        }
+
+        // Add Woven Row HTML
+        rowsWoven++;
+        const rowEl = document.createElement('div');
+        rowEl.className = 'woven-row';
+        const color = WEFT_COLORS[rowsWoven % WEFT_COLORS.length];
+
+        for (let i = 0; i < WARP_COUNT; i++) {
+          const cell = document.createElement('div');
+          cell.className = 'woven-cell';
+          cell.style.background = (i % 2 === rowsWoven % 2) ? color : '#a9a081'; 
+          rowEl.appendChild(cell);
+        }
+        
+        const container = document.getElementById('wovenRows');
+        container.prepend(rowEl);
+        
+        while (container.children.length > 40) container.removeChild(container.lastChild);
+        updateStats();
+      }, 150);
     }
 
     function animateShuttle() {
@@ -2019,7 +2150,7 @@
       clearInterval(simTimer);
       simRunning = false;
 
-      document.getElementById('weaveBtn').disabled = true;
+      document.getElementById('activeConsole').style.display = 'none';
       document.getElementById('resetBtn').style.display = 'flex';
 
       document.getElementById('resultRows').textContent = rowsWoven;
@@ -2044,14 +2175,15 @@
 
       document.getElementById('idleMsg').style.display = 'flex';
       document.getElementById('startBtn').style.display = 'flex';
-      document.getElementById('weaveBtn').style.display = 'none';
-      document.getElementById('weaveBtn').disabled = true;
+      document.getElementById('activeConsole').style.display = 'none';
       document.getElementById('resetBtn').style.display = 'none';
 
-      // Reset shuttle
+      // Reset beater and shuttle
+      document.getElementById('beater').classList.remove('strike');
       const shuttle = document.getElementById('shuttle');
       shuttle.style.transition = 'none';
       shuttle.style.left = '-30px';
+      shuttleDir = 1;
 
       initLoom();
     }
