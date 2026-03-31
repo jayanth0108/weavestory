@@ -21,18 +21,18 @@
     }
 
     :root {
-      --clay: #C6724B;
-      --clay-light: #E8A882;
+      --clay: #A9A081;
+      --clay-light: #C2BA9F;
       --cream: #F5EFE4;
-      --linen: #EAE0CC;
-      --bark: #5C3D2E;
-      --bark-deep: #3A2218;
+      --linen: #E8E5DF;
+      --bark: #2A3427;
+      --bark-deep: #1A2018;
       --sage: #7A8C6E;
       --sage-light: #B5C4A8;
-      --sand: #D6C4A0;
-      --charcoal: #2C2420;
-      --text: #3A2C24;
-      --text-light: #7A6A5A;
+      --sand: #C9C4B7;
+      --charcoal: #121611;
+      --text: #1a2018;
+      --text-light: #4c5c46;
 
       --font-display: 'Playfair Display', serif;
       --font-body: 'Jost', sans-serif;
@@ -144,13 +144,13 @@
     .btn-primary {
       background: var(--clay);
       color: var(--cream);
-      box-shadow: 0 4px 20px rgba(198, 114, 75, 0.4);
+      box-shadow: 0 4px 20px rgba(169, 160, 129, 0.4);
     }
 
     .btn-primary:hover {
       background: var(--bark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(198, 114, 75, 0.45);
+      box-shadow: 0 8px 28px rgba(169, 160, 129, 0.45);
     }
 
     .btn-outline {
@@ -178,7 +178,7 @@
       background: #fff;
       border-radius: var(--radius-md);
       overflow: hidden;
-      box-shadow: 0 2px 12px rgba(58, 34, 24, 0.08);
+      box-shadow: 0 2px 12px rgba(26, 32, 24, 0.08);
     }
 
     /* ========== CHIP / BADGE ========== */
@@ -193,7 +193,7 @@
     }
 
     .chip-clay {
-      background: rgba(198, 114, 75, 0.15);
+      background: rgba(169, 160, 129, 0.15);
       color: var(--clay);
     }
 
@@ -215,31 +215,42 @@
     /* Hero */
     .hero {
       position: relative;
-      background: var(--bark-deep);
+      background-color: var(--bark-deep);
+      background-image: url('sarees.jpeg');
+      background-size: cover;
+      background-position: center 65%;
+      /* perfectly positions the woman and saree if using the vertical photo */
+      background-repeat: no-repeat;
       padding: 60px 24px 80px;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      /* nicely frames landscape on smaller screens */
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
       text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        aspect-ratio: 16 / 9;
+        /* cinematic landscape on larger screens */
+        min-height: unset;
+      }
     }
 
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(198, 114, 75, 0.2) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 20%, rgba(122, 140, 110, 0.15) 0%, transparent 50%);
+      background: rgba(26, 32, 24, 0.45);
+      /* Lighter dark overlay so the full photo is clearer */
     }
 
-    /* Woven texture pattern */
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 6px, rgba(255, 255, 255, 0.02) 6px, rgba(255, 255, 255, 0.02) 7px),
-        repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(255, 255, 255, 0.02) 6px, rgba(255, 255, 255, 0.02) 7px);
-      pointer-events: none;
-    }
+
 
     .hero-content {
       position: relative;
@@ -397,7 +408,7 @@
 
     .craft-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(58, 34, 24, 0.18);
+      box-shadow: 0 12px 30px rgba(26, 32, 24, 0.18);
     }
 
     .craft-card-img {
@@ -528,9 +539,10 @@
       height: 38vh;
       min-height: 260px;
       background-color: var(--bark-deep);
-      background-image: url('cotton-hero.jpg');
+      background-image: url('weaving.jpeg');
       background-size: cover;
-      background-position: center 40%; /* Focus on the flower/hands in the center */
+      background-position: center 15%;
+      /* Focus on the weaver's face in the upper part of the photo */
       overflow: hidden;
     }
 
@@ -539,7 +551,7 @@
       position: absolute;
       inset: 0;
       /* Soft dark gradient at top to make sure any overlapping layout feels natural */
-      background: linear-gradient(180deg, rgba(44,36,32,0.2) 0%, transparent 60%);
+      background: linear-gradient(180deg, rgba(26, 32, 24, 0.2) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -723,7 +735,7 @@
       background: #000;
       position: relative;
       aspect-ratio: 16/9;
-      box-shadow: 0 8px 32px rgba(58, 34, 24, 0.25);
+      box-shadow: 0 8px 32px rgba(26, 32, 24, 0.25);
     }
 
     .video-outer iframe,
@@ -737,7 +749,7 @@
     .video-placeholder {
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, var(--bark-deep), #5C3D2E);
+      background: linear-gradient(135deg, var(--bark-deep), #2A3427);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -760,7 +772,7 @@
     }
 
     .video-placeholder:hover {
-      background: linear-gradient(135deg, #5C3D2E, var(--clay));
+      background: linear-gradient(135deg, #2A3427, var(--clay));
     }
 
     .play-btn-big {
@@ -772,7 +784,7 @@
       place-items: center;
       position: relative;
       z-index: 1;
-      box-shadow: 0 0 0 12px rgba(198, 114, 75, 0.2);
+      box-shadow: 0 0 0 12px rgba(169, 160, 129, 0.2);
       transition: transform var(--transition);
     }
 
@@ -896,7 +908,7 @@
       border-radius: var(--radius-sm);
       padding: 12px 8px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(58, 34, 24, 0.08);
+      box-shadow: 0 2px 8px rgba(26, 32, 24, 0.08);
     }
 
     .sim-stat-val {
@@ -941,9 +953,9 @@
 
     .loom-frame {
       position: relative;
-      background: #2C1A10;
+      background: #121611;
       border-radius: 8px;
-      border: 3px solid #5C3D2E;
+      border: 3px solid #2A3427;
       overflow: hidden;
     }
 
@@ -1047,7 +1059,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(58, 34, 24, 0.85);
+      background: rgba(26, 32, 24, 0.85);
       z-index: 200;
       align-items: center;
       justify-content: center;
@@ -1239,6 +1251,7 @@
       overflow-y: auto;
       max-height: calc(100vh - var(--bottom-nav-h));
     }
+
     /* Scanner Overlay */
     .scanner-overlay {
       display: none;
@@ -1248,52 +1261,110 @@
       z-index: 300;
       flex-direction: column;
     }
-    .scanner-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
+
+    .scanner-overlay.show {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
     .scanner-header {
-      position: absolute; top: 0; left: 0; right: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       padding: 20px;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       z-index: 301;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
     }
+
     .scanner-close {
-      background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
+
     .scanner-video {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
+
     .scanner-box {
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      width: 250px; height: 250px;
-      border: 2px solid rgba(255,255,255,0.4);
+      width: 250px;
+      height: 250px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
       border-radius: 16px;
-      box-shadow: 0 0 0 4000px rgba(0,0,0,0.6);
+      box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.6);
       overflow: hidden;
       z-index: 301;
     }
-    .scanner-box::before, .scanner-box::after {
-      content: ''; position: absolute; width: 30px; height: 30px; border-color: #fff; border-style: solid;
+
+    .scanner-box::before,
+    .scanner-box::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-color: #fff;
+      border-style: solid;
     }
-    .scanner-box::before { top: 0; left: 0; border-width: 4px 0 0 4px; border-top-left-radius: 8px;}
-    .scanner-box::after { bottom: 0; right: 0; border-width: 0 4px 4px 0; border-bottom-right-radius: 8px;}
+
+    .scanner-box::before {
+      top: 0;
+      left: 0;
+      border-width: 4px 0 0 4px;
+      border-top-left-radius: 8px;
+    }
+
+    .scanner-box::after {
+      bottom: 0;
+      right: 0;
+      border-width: 0 4px 4px 0;
+      border-bottom-right-radius: 8px;
+    }
+
     .scanner-line {
-      width: 100%; height: 2px;
+      width: 100%;
+      height: 2px;
       background: var(--clay);
       position: absolute;
       top: 0;
       box-shadow: 0 0 8px var(--clay);
       animation: scanAnim 2s infinite linear;
     }
+
     @keyframes scanAnim {
-      0% { top: 0; }
-      50% { top: 100%; }
-      100% { top: 0; }
+      0% {
+        top: 0;
+      }
+
+      50% {
+        top: 100%;
+      }
+
+      100% {
+        top: 0;
+      }
     }
+
     .scanner-msg {
-      position: absolute; bottom: 40px; left: 0; right: 0;
-      text-align: center; color: #fff; font-size: 0.9rem; z-index: 301;
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #fff;
+      font-size: 0.9rem;
+      z-index: 301;
       letter-spacing: 0.05em;
     }
   </style>
@@ -1339,7 +1410,7 @@
     <!-- Wave -->
     <div class="wave-divider">
       <svg viewBox="0 0 375 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0 0 Q93 40 187.5 20 Q282 0 375 30 L375 0 Z" fill="#3A2218" />
+        <path d="M0 0 Q93 40 187.5 20 Q282 0 375 30 L375 0 Z" fill="#1A2018" />
       </svg>
     </div>
 
@@ -1352,11 +1423,9 @@
 
         <!-- Kala Cotton -->
         <div class="craft-card card craft-kala" onclick="goToPage('page-product')">
-          <div class="craft-card-img">
-            <div class="pattern"
-              style="background: repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 2px, transparent 2px, transparent 8px);">
-            </div>
-            🌾
+          <div class="craft-card-img" style="background: none; padding: 0;">
+            <img src="kaalaframe.jpg" alt="Kala Cotton Plant"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
           <div class="craft-card-body">
             <div class="craft-card-name">Kala Cotton</div>
@@ -1365,35 +1434,7 @@
           </div>
         </div>
 
-        <!-- Jamdani -->
-        <div class="craft-card card craft-jamdani" onclick="goToPage('page-product')">
-          <div class="craft-card-img">
-            <div class="pattern"
-              style="background: repeating-linear-gradient(30deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 6px);">
-            </div>
-            🧵
-          </div>
-          <div class="craft-card-body">
-            <div class="craft-card-name">Jamdani Muslin</div>
-            <div class="craft-card-region">West Bengal</div>
-            <span class="chip chip-sand">UNESCO Heritage</span>
-          </div>
-        </div>
 
-        <!-- Madras -->
-        <div class="craft-card card craft-madras" onclick="goToPage('page-product')">
-          <div class="craft-card-img">
-            <div class="pattern"
-              style="background: repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 6px), repeating-linear-gradient(90deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 6px);">
-            </div>
-            🎨
-          </div>
-          <div class="craft-card-body">
-            <div class="craft-card-name">Madras Checks</div>
-            <div class="craft-card-region">Tamil Nadu</div>
-            <span class="chip chip-sage">Vegetable Dyes</span>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -1784,7 +1825,8 @@
   <div class="scanner-overlay" id="scannerOverlay">
     <div class="scanner-header">
       <button class="scanner-close" onclick="stopScanner()">✕</button>
-      <div style="color:#fff;font-family:var(--font-body);letter-spacing:0.1em;text-transform:uppercase;">Scan Product QR</div>
+      <div style="color:#fff;font-family:var(--font-body);letter-spacing:0.1em;text-transform:uppercase;">Scan Product
+        QR</div>
       <div style="width:24px"></div>
     </div>
     <video class="scanner-video" id="scannerVideo" autoplay playsinline></video>
@@ -1872,8 +1914,8 @@
 
     // Weft colors (row colors cycle)
     const WEFT_COLORS = [
-      '#C6724B', '#8B5E3C', '#D4A06A', '#7A8C6E', '#B5A070',
-      '#5C3D2E', '#E8A882', '#A0784A', '#6A8058', '#C09060'
+      '#A9A081', '#8B5E3C', '#D4A06A', '#7A8C6E', '#B5A070',
+      '#2A3427', '#C2BA9F', '#A0784A', '#6A8058', '#C09060'
     ];
 
     function initLoom() {
@@ -1934,10 +1976,8 @@
         cell.style.background = (i % 2 === rowsWoven % 2) ? color : WARP_COLORS[i % WARP_COLORS.length];
         rowEl.appendChild(cell);
       }
-
       const container = document.getElementById('wovenRows');
       container.prepend(rowEl);
-
       // Keep max visible rows for performance
       while (container.children.length > 40) container.removeChild(container.lastChild);
 
@@ -2030,13 +2070,13 @@
       const overlay = document.getElementById('scannerOverlay');
       const video = document.getElementById('scannerVideo');
       overlay.classList.add('show');
-      
+
       try {
-        scannerStream = await navigator.mediaDevices.getUserMedia({ 
-          video: { facingMode: 'environment' } 
+        scannerStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' }
         });
         video.srcObject = scannerStream;
-        
+
         // Wait for video metadata to set canvas size and begin scanning
         video.onloadedmetadata = () => {
           video.play();
@@ -2058,55 +2098,55 @@
         scanCanvasEl.height = video.videoHeight;
         scanCanvasEl.width = video.videoWidth;
         scanCtx.drawImage(video, 0, 0, scanCanvasEl.width, scanCanvasEl.height);
-        
+
         try {
           const imageData = scanCtx.getImageData(0, 0, scanCanvasEl.width, scanCanvasEl.height);
-          
+
           if (typeof jsQR !== 'undefined') {
             // Find QR code in the image data
             const code = jsQR(imageData.data, imageData.width, imageData.height, {
               inversionAttempts: "dontInvert",
             });
-            
+
             if (code && code.data) {
               console.log("Decoded QR Code:", code.data);
               stopScanner();
-              
+
               // This checks if the QR code is exactly the YouTube link you shared, 
               // or if it contains your specific video ID, or if it's a Canva link.
-              const isVerifiedKalaCottonQR = 
+              const isVerifiedKalaCottonQR =
                 code.data === "https://youtube.com/shorts/nhuHVS_NWs4?feature=share" ||
-                code.data.includes("nhuHVS_NWs4") || 
+                code.data.includes("nhuHVS_NWs4") ||
                 code.data.toLowerCase().includes("canva");
-              
+
               // Strict verification check!
               if (isVerifiedKalaCottonQR) {
-                 // Valid! Show the Kala Cotton product safely.
-                 document.querySelector('.id-val').innerText = 'KYF-KTC-2024-0087';
-                 goToPage('page-product');
+                // Valid! Show the Kala Cotton product safely.
+                document.querySelector('.id-val').innerText = 'KYF-KTC-2024-0087';
+                goToPage('page-product');
               } else {
-                 // Invalid / some other random black-and-white QR code. Reject it!
-                 alert("⚠️ Unrecognized QR Code scanned.\n\nThis app only opens the secure Kala Cotton product QR code.\n\n(Developer Note — The code you just scanned says: " + code.data + ")");
+                // Invalid / some other random black-and-white QR code. Reject it!
+                alert("⚠️ Unrecognized QR Code scanned.\n\nThis app only opens the secure Kala Cotton product QR code.\n\n(Developer Note — The code you just scanned says: " + code.data + ")");
               }
-              
+
               return; // Halt the scan loop
             }
           }
-        } catch(e) { console.error("Canvas error:", e); }
+        } catch (e) { console.error("Canvas error:", e); }
       }
-      
+
       // Continue next frame
-      if(scannerStream) {
+      if (scannerStream) {
         scanAnimationFrame = requestAnimationFrame(tickScan);
       }
     }
 
     function stopScanner() {
       if (scanAnimationFrame) cancelAnimationFrame(scanAnimationFrame);
-      
+
       const overlay = document.getElementById('scannerOverlay');
       overlay.classList.remove('show');
-      
+
       if (scannerStream) {
         scannerStream.getTracks().forEach(track => track.stop());
         scannerStream = null;
