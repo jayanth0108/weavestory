@@ -1454,7 +1454,8 @@
       <div class="crafts-scroll">
 
         <!-- Kala Cotton -->
-        <div class="craft-card card craft-kala" onclick="goToPage('page-product')">
+        <!-- Kala Cotton -->
+        <div class="craft-card card craft-kala" onclick="loadProduct('kala-cotton')">
           <div class="craft-card-img" style="background: none; padding: 0;">
             <img src="kaalaframe.jpg" alt="Kala Cotton Plant"
               style="width: 100%; height: 100%; object-fit: cover; display: block;">
@@ -1463,6 +1464,45 @@
             <div class="craft-card-name">Kala Cotton</div>
             <div class="craft-card-region">Kutch, Gujarat</div>
             <span class="chip chip-clay">Natural Fibre</span>
+          </div>
+        </div>
+
+        <!-- Paruthee Handlooms -->
+        <div class="craft-card card craft-kala" onclick="loadProduct('paruthee')">
+          <div class="craft-card-img">
+            <div class="pattern"></div>
+            🧶
+          </div>
+          <div class="craft-card-body">
+            <div class="craft-card-name">Paruthee Handloom</div>
+            <div class="craft-card-region">Tamil Nadu</div>
+            <span class="chip chip-sage">Pure Cotton</span>
+          </div>
+        </div>
+
+        <!-- Indhikoj -->
+        <div class="craft-card card craft-jamdani" onclick="loadProduct('indhikoj')">
+          <div class="craft-card-img">
+            <div class="pattern"></div>
+            🪶
+          </div>
+          <div class="craft-card-body">
+            <div class="craft-card-name">Indhikoj Block Print</div>
+            <div class="craft-card-region">Rajasthan</div>
+            <span class="chip chip-clay">Block Print</span>
+          </div>
+        </div>
+
+        <!-- Nabhaindia -->
+        <div class="craft-card card craft-madras" onclick="loadProduct('nabhaindia')">
+          <div class="craft-card-img">
+            <div class="pattern"></div>
+            🧣
+          </div>
+          <div class="craft-card-body">
+            <div class="craft-card-name">Nabhaindia Saree</div>
+            <div class="craft-card-region">Karnataka</div>
+            <span class="chip chip-sand">Gajendragad</span>
           </div>
         </div>
 
@@ -1517,12 +1557,64 @@
 
 
   <!-- ══════════════════════════════════
-     PAGE 2: PRODUCT STORY
+     PAGE: CATALOGUE 
 ══════════════════════════════════ -->
   <div id="page-product" class="page page-content-pad">
+    <div class="nav">
+      <span class="nav-logo">Know Your <span>Fabric</span></span>
+      <span></span>
+    </div>
+    
+    <div style="text-align:center; margin-bottom: 24px;">
+      <div class="section-label">Catalogue</div>
+      <h2 class="section-title">All Crafts</h2>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      
+      <div class="card" style="padding:0; overflow:hidden; cursor:pointer;" onclick="loadProduct('kala-cotton')">
+        <div style="height:140px; background:url('weaving.jpeg') center/cover;"></div>
+        <div style="padding:16px; background:var(--clay); color:#fff;">
+          <h3 style="font-family:var(--font-display); margin:0 0 4px 0;">Kala Cotton</h3>
+          <p style="font-size:0.85rem; opacity:0.8; margin:0;">Kutch, Gujarat</p>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden; cursor:pointer;" onclick="loadProduct('paruthee')">
+        <div style="height:140px; background:url('sarees.jpeg') center/cover;"></div>
+        <div style="padding:16px; background:var(--clay); color:#fff;">
+          <h3 style="font-family:var(--font-display); margin:0 0 4px 0;">Paruthee Handloom</h3>
+          <p style="font-size:0.85rem; opacity:0.8; margin:0;">Tamil Nadu</p>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden; cursor:pointer;" onclick="loadProduct('indhikoj')">
+        <div style="height:140px; background:url('weaving.jpeg') center/cover;"></div>
+        <div style="padding:16px; background:var(--clay); color:#fff;">
+          <h3 style="font-family:var(--font-display); margin:0 0 4px 0;">Indhikoj Block Print</h3>
+          <p style="font-size:0.85rem; opacity:0.8; margin:0;">Rajasthan</p>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden; cursor:pointer;" onclick="loadProduct('nabhaindia')">
+        <div style="height:140px; background:url('sarees.jpeg') center/cover;"></div>
+        <div style="padding:16px; background:var(--clay); color:#fff;">
+          <h3 style="font-family:var(--font-display); margin:0 0 4px 0;">Nabhaindia Gajendragad Saree</h3>
+          <p style="font-size:0.85rem; opacity:0.8; margin:0;">Karnataka</p>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /page-product (catalogue) -->
+
+
+  <!-- ══════════════════════════════════
+     PAGE: PRODUCT STORY
+══════════════════════════════════ -->
+  <div id="page-product-detail" class="page page-content-pad">
 
     <div class="nav">
-      <button class="nav-back" onclick="goToPage('page-home')">← Home</button>
+      <button class="nav-back" onclick="goToPage('page-product')">← Back</button>
       <span class="nav-logo">Know Your <span>Fabric</span></span>
       <span style="font-size:0.7rem;letter-spacing:0.12em;color:rgba(255,255,255,0.35);">
         <button style="background:none;border:none;color:var(--clay-light);cursor:pointer;font-size:1rem;"
@@ -1531,12 +1623,12 @@
     </div>
 
     <!-- Product hero image area -->
-    <div class="product-hero"></div>
+    <div class="product-hero" id="prodHero"></div>
 
     <!-- Product ID strip -->
     <div class="product-id-strip">
       <span>Product ID</span>
-      <span class="id-val">KYF-KTC-2024-0087</span>
+      <span class="id-val" id="prodId">KYF-KTC-2024-0087</span>
       <span>✓ Verified</span>
     </div>
 
@@ -1544,31 +1636,31 @@
 
       <!-- Name + chips -->
       <div class="product-name-block">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+        <div id="prodChips" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
           <span class="chip chip-clay">Kala Cotton</span>
           <span class="chip chip-sage">Handwoven</span>
         </div>
-        <h1>Kutch Kala Cotton<br />Stole</h1>
-        <p class="product-sub">Hand-spun, hand-dyed, naturally grown cotton from the Rann of Kutch</p>
+        <h1 id="prodName">Kutch Kala Cotton<br />Stole</h1>
+        <p class="product-sub" id="prodSub">Hand-spun, hand-dyed, naturally grown cotton from the Rann of Kutch</p>
       </div>
 
       <!-- Info grid -->
       <div class="info-grid">
         <div class="info-cell">
           <div class="info-cell-label">Fabric</div>
-          <div class="info-cell-value">Kala Cotton</div>
+          <div class="info-cell-value" id="prodFabric">Kala Cotton</div>
         </div>
         <div class="info-cell">
           <div class="info-cell-label">Region</div>
-          <div class="info-cell-value">Kutch, Gujarat</div>
+          <div class="info-cell-value" id="prodRegion">Kutch, Gujarat</div>
         </div>
         <div class="info-cell">
           <div class="info-cell-label">Weave Time</div>
-          <div class="info-cell-value">~14 hours</div>
+          <div class="info-cell-value" id="prodWeaveTime">~14 hours</div>
         </div>
         <div class="info-cell">
           <div class="info-cell-label">Width</div>
-          <div class="info-cell-value">22 inches</div>
+          <div class="info-cell-value" id="prodWidth">22 inches</div>
         </div>
       </div>
 
@@ -1579,14 +1671,14 @@
       <div class="artisan-card">
         <div class="artisan-avatar">👨‍🎨</div>
         <div class="artisan-info">
-          <h3>Ramesh Vankar</h3>
+          <h3 id="artisanName">Ramesh Vankar</h3>
           <p>
-            Master weaver with <strong style="color:var(--clay-light);">32 years</strong> of experience.<br />
-            Member of Khamir Craft Resource Centre, Kutch.
+            Master weaver with <strong style="color:var(--clay-light);" id="artisanYears">32 years</strong> of experience.<br />
+            <span id="artisanDesc">Member of Khamir Craft Resource Centre, Kutch.</span>
           </p>
         </div>
       </div>
-      <p style="font-size:0.83rem;color:var(--text-light);line-height:1.7;margin:12px 0;">
+      <p id="artisanStory" style="font-size:0.83rem;color:var(--text-light);line-height:1.7;margin:12px 0;">
         Ramesh learned the ancient art of Kala Cotton weaving from his father, continuing a family tradition
         spanning five generations. Each stole he creates is made using traditional pit looms and natural
         indigo-based dyes, without any chemical inputs.
@@ -1597,7 +1689,7 @@
       <!-- Sustainability -->
       <div class="sustain-block">
         <h3>🌿 Sustainability Profile</h3>
-        <div class="sustain-items">
+        <div class="sustain-items" id="sustainItemsContainer">
           <div class="sustain-item">
             <span class="si-icon">☀️</span>
             <span>Kala Cotton is a rain-fed crop requiring <strong>zero irrigation</strong> — growing only in arid Kutch
@@ -1640,7 +1732,7 @@
   <div id="page-video" class="page page-content-pad">
 
     <div class="nav">
-      <button class="nav-back" onclick="goToPage('page-product')">← Product</button>
+      <button class="nav-back" onclick="goToPage('page-product-detail')">← Product</button>
       <span class="nav-logo">Know Your <span>Fabric</span></span>
       <span></span>
     </div>
@@ -1651,18 +1743,8 @@
     </div>
 
     <div class="video-container-wrap">
-      <div class="video-outer">
-        <!-- Placeholder — swap this iframe src with a real YouTube embed URL -->
-        <div class="video-placeholder" id="videoPlaceholder" onclick="loadVideo()">
-          <div class="play-btn-big">
-            <svg viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-          <p>Watch Kala Cotton Weaving Process</p>
-          <p style="font-size:0.7rem;opacity:0.6;margin-top:-6px;">~4 minutes · Kutch, Gujarat</p>
-        </div>
-        <!-- Iframe will replace placeholder on click -->
+      <div id="dynamicVideoList">
+        <!-- Videos injected by JS -->
       </div>
 
       <p style="font-size:0.78rem;color:var(--text-light);margin-top:12px;text-align:center;">
@@ -1736,7 +1818,7 @@
   <div id="page-simulator" class="page page-content-pad">
 
     <div class="nav">
-      <button class="nav-back" onclick="goToPage('page-home')">← Home</button>
+      <button class="nav-back" onclick="goToPage('page-product-detail')">← Product</button>
       <span class="nav-logo">Know Your <span>Fabric</span></span>
       <span></span>
     </div>
@@ -1826,17 +1908,17 @@
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
             <span>Rows per hour (expert weaver)</span>
-            <strong style="color:var(--bark-deep);">~2,400 rows</strong>
+            <strong id="simRate" style="color:var(--bark-deep);">~2,400 rows</strong>
           </div>
           <div style="height:1px;background:var(--linen);"></div>
           <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
-            <span>Rows for a 200cm stole</span>
-            <strong style="color:var(--bark-deep);">~28,000 rows</strong>
+            <span>Rows for a <span id="simLen">200cm</span> stole</span>
+            <strong id="simTotal" style="color:var(--bark-deep);">~28,000 rows</strong>
           </div>
           <div style="height:1px;background:var(--linen);"></div>
           <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-light);">
             <span>Total weaving time for this product</span>
-            <strong style="color:var(--clay);">~14 hours</strong>
+            <strong id="simTime" style="color:var(--clay);">~14 hours</strong>
           </div>
         </div>
       </div>
@@ -1853,16 +1935,16 @@
       <div class="result-icon">🧣</div>
       <h2 class="result-title">Time's Up!</h2>
       <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:4px;">In 60 seconds, you wove</p>
-      <div class="result-highlight">
+      <div class="result-highlight" id="resultHighlight">
         "You created <span id="resultRows">0</span> rows —<br />
         about 1 cm of fabric.<br /><br />
         A real artisan needs <strong>14+ hours</strong> to weave this product by hand."
       </div>
-      <p class="result-sub">
+      <p class="result-sub" id="resultSub">
         Ramesh Vankar has done this for 32 years.<br />
         Every thread you wear carries his hours, skill, and story.
       </p>
-      <button class="btn btn-primary full-width" onclick="closeResult(); goToPage('page-product')">
+      <button class="btn btn-primary full-width" onclick="closeResult(); goToPage('page-product-detail')">
         👁 See the Full Artisan Story
       </button>
       <button class="btn btn-outline full-width mt-4" onclick="closeResult(); resetSimulator()">
@@ -1915,6 +1997,221 @@
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
   <script>
+    const productsData = {
+      'kala-cotton': {
+        id: 'KYF-KTC-2024-0087',
+        name: 'Kutch Kala Cotton<br/>Stole',
+        sub: 'Hand-spun, hand-dyed, naturally grown cotton from the Rann of Kutch',
+        chips: ['Kala Cotton', 'Handwoven'],
+        fabric: 'Kala Cotton',
+        region: 'Kutch, Gujarat',
+        weaveTime: '~14 hours',
+        width: '22 inches',
+        artisanName: 'Ramesh Vankar',
+        artisanYears: '32 years',
+        artisanDesc: 'Member of Khamir Craft Resource Centre, Kutch.',
+        artisanStory: 'Ramesh learned the ancient art of Kala Cotton weaving from his father, continuing a family tradition spanning five generations. Each stole he creates is made using traditional pit looms and natural indigo-based dyes, without any chemical inputs.',
+        videos: [
+          {
+            title: 'Watch Kala Cotton Weaving Process',
+            sub: '~4 minutes · Kutch, Gujarat',
+            link: 'https://youtube.com/shorts/nhuHVS_NWs4?feature=share'
+          }
+        ],
+        sustainItems: [
+          { icon: '☀️', text: 'Kala Cotton is a rain-fed crop requiring <strong>zero irrigation</strong> — growing only in arid Kutch soil.' },
+          { icon: '💧', text: 'Natural dyeing process uses <strong>85% less water</strong> than conventional fabric processing.' },
+          { icon: '♻️', text: 'Zero synthetic inputs. Fully <strong>biodegradable</strong> at end of life.' },
+          { icon: '🤝', text: 'Purchase directly supports the weaver\'s family — <strong>no middlemen</strong> in this supply chain.' }
+        ],
+        heroImg: 'weaving.jpeg',
+        simData: {
+          rate: '~2,400 rows',
+          length: '200cm',
+          total: '~28,000 rows',
+          time: '~14 hours'
+        }
+      },
+      'paruthee': {
+        id: 'KYF-PTH-2024-0102',
+        name: 'Paruthee Handloom<br/>Saree',
+        sub: 'Ethically sourced and meticulously woven pure cotton from Southern India',
+        chips: ['Paruthee', 'Pure Cotton'],
+        fabric: 'Pure Cotton',
+        region: 'Tamil Nadu',
+        weaveTime: '~20 hours',
+        width: '45 inches',
+        artisanName: 'Selvam',
+        artisanYears: '25 years',
+        artisanDesc: 'A dedicated artisan preserving the legacy of traditional frame looms.',
+        artisanStory: 'Selvam weaves the rich narrative of Paruthee into every yard, maintaining the delicate balance of warp and weft handed down by his ancestors.',
+        videos: [
+          {
+            title: 'Watch Paruthee Handloom Preparation (Part 1)',
+            sub: '~4 minutes · Tamil Nadu',
+            link: 'https://youtube.com/shorts/ihCjuAkgZio?feature=share'
+          },
+          {
+            title: 'Watch Paruthee Handloom Weaving (Part 2)',
+            sub: '~4 minutes · Tamil Nadu',
+            link: 'https://youtube.com/shorts/prmoIsUFRWo?feature=share'
+          }
+        ],
+        sustainItems: [
+          { icon: '☀️', text: 'Locally grown cotton supporting domestic agricultural cycles.' },
+          { icon: '💧', text: 'Dyed using azo-free, environmentally friendly dyes.' },
+          { icon: '♻️', text: 'Gentle on skin and strictly <strong>biodegradable</strong>.' },
+          { icon: '🤝', text: 'Fosters economic independence for rural weaving clusters.' }
+        ],
+        heroImg: 'sarees.jpeg',
+        simData: {
+          rate: '~2,000 rows',
+          length: '5.5m',
+          total: '~40,000 rows',
+          time: '~20 hours'
+        }
+      },
+      'indhikoj': {
+        id: 'KYF-IND-2024-0341',
+        name: 'Indhikoj Block Print<br/>Fabric',
+        sub: 'Traditional hand-block printing capturing intricate heritage motifs',
+        chips: ['Indhikoj', 'Block Print'],
+        fabric: 'Printed Cotton',
+        region: 'Rajasthan',
+        weaveTime: '~12 hours',
+        width: '44 inches',
+        artisanName: 'Artisan Cooperative',
+        artisanYears: '15+ years',
+        artisanDesc: 'Master block makers and textile printers.',
+        artisanStory: 'Each wooden block is meticulously hand-carved. The fabric is then manually stamped hundreds of times with precise alignment to create complex, interlocking repeating patterns.',
+        videos: [
+          {
+            title: 'Watch Indhikoj Block Printing Process',
+            sub: '~4 minutes · Rajasthan',
+            link: 'https://youtube.com/shorts/dvMfNtF3VgI?feature=share'
+          }
+        ],
+        sustainItems: [
+          { icon: '☀️', text: 'Uses naturally carved wooden blocks.' },
+          { icon: '💧', text: 'Often relies on natural or low-impact azo-free dyes.' },
+          { icon: '♻️', text: 'A completely analog, carbon-neutral creative process.' },
+          { icon: '🤝', text: 'Preserves an intangible cultural heritage.' }
+        ],
+        heroImg: 'weaving.jpeg',
+        simData: {
+          rate: '~800 stamps',
+          length: '5m',
+          total: '~10,000 stamps',
+          time: '~12 hours'
+        }
+      },
+      'nabhaindia': {
+        id: 'KYF-NAB-2024-0556',
+        name: 'Nabhaindia Gajendragad<br/>Saree',
+        sub: 'Iconic pure cotton saree known for its striking check patterns and borders',
+        chips: ['Nabhaindia', 'Gajendragad'],
+        fabric: 'Pure Cotton Handloom',
+        region: 'Karnataka',
+        weaveTime: '~24 hours',
+        width: '46 inches',
+        artisanName: 'Gajendragad Weaver',
+        artisanYears: '20+ years',
+        artisanDesc: 'Dedicated artisan preserving the unique check patterns of the region.',
+        artisanStory: 'Famous for its striking check patterns and distinctive solid borders, the Gajendragad saree requires careful alignment of colored yarns in both warp and weft before the weaving even begins.',
+        videos: [
+          {
+            title: 'Watch Gajendragad Weaving Process',
+            sub: '~4 minutes · Karnataka',
+            link: 'https://youtube.com/shorts/Zt6-J7N5k2k?feature=share'
+          }
+        ],
+        sustainItems: [
+          { icon: '☀️', text: 'Uses locally sourced, durable cotton yarns.' },
+          { icon: '💧', text: 'Hand-dyed and woven in small, energy-efficient batches.' },
+          { icon: '♻️', text: 'Highly durable and completely <strong>biodegradable</strong>.' },
+          { icon: '🤝', text: 'Directly supports weaving clusters in rural Karnataka.' }
+        ],
+        heroImg: 'sarees.jpeg',
+        simData: {
+          rate: '~1,500 rows',
+          length: '6m',
+          total: '~45,000 rows',
+          time: '~24 hours'
+        }
+      }
+    };
+
+    let currentVideoLink = 'https://youtube.com/shorts/nhuHVS_NWs4?feature=share';
+
+    function loadProduct(productId) {
+      const data = productsData[productId];
+      if (!data) return;
+
+      // Update Product Page
+      document.getElementById('prodId').innerText = data.id;
+      document.getElementById('prodName').innerHTML = data.name;
+      document.getElementById('prodSub').innerText = data.sub;
+      document.getElementById('prodFabric').innerText = data.fabric;
+      document.getElementById('prodRegion').innerText = data.region;
+      document.getElementById('prodWeaveTime').innerText = data.weaveTime;
+      document.getElementById('prodWidth').innerText = data.width;
+      document.getElementById('artisanName').innerText = data.artisanName;
+      document.getElementById('artisanYears').innerText = data.artisanYears;
+      document.getElementById('artisanDesc').innerText = data.artisanDesc;
+      document.getElementById('artisanStory').innerText = data.artisanStory;
+      
+      const chipsHtml = data.chips.map((c, i) => `<span class="chip ${i === 0 ? 'chip-clay' : 'chip-sage'}">${c}</span>`).join('');
+      document.getElementById('prodChips').innerHTML = chipsHtml;
+      
+      const sustainHtml = data.sustainItems.map(item => `
+        <div class="sustain-item">
+          <span class="si-icon">${item.icon}</span>
+          <span>${item.text}</span>
+        </div>
+      `).join('');
+      document.getElementById('sustainItemsContainer').innerHTML = sustainHtml;
+
+      document.getElementById('prodHero').style.backgroundImage = `url('${data.heroImg}')`;
+
+      // Update Video Page
+      const videoList = document.getElementById('dynamicVideoList');
+      if (data.videos) {
+        videoList.innerHTML = data.videos.map(vid => `
+          <div class="video-outer" style="margin-bottom: 24px;">
+            <div class="video-placeholder" onclick="window.open('${vid.link}', '_blank')">
+              <div class="play-btn-big">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <p>${vid.title}</p>
+              <p style="font-size:0.7rem;opacity:0.6;margin-top:-6px;">${vid.sub}</p>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        videoList.innerHTML = '';
+      }
+
+      // Update Simulator Data
+      document.getElementById('simRate').innerText = data.simData.rate;
+      document.getElementById('simLen').innerText = data.simData.length;
+      document.getElementById('simTotal').innerText = data.simData.total;
+      document.getElementById('simTime').innerText = data.simData.time;
+
+      document.getElementById('resultHighlight').innerHTML = `
+        "You created <span id="resultRows">0</span> rows —<br />
+        about 1 cm of fabric.<br /><br />
+        A real artisan needs <strong>${data.simData.time.replace('~','')}</strong> to weave this product by hand."
+      `;
+      document.getElementById('resultSub').innerHTML = `
+        ${data.artisanName} has done this for ${data.artisanYears}.<br />
+        Every thread you wear carries ${data.artisanName}'s hours, skill, and story.
+      `;
+
+      goToPage('page-product-detail');
+    }
+
     /* ─────────────────────────────────────────
        PAGE NAVIGATION
     ───────────────────────────────────────── */
@@ -1927,6 +2224,7 @@
       const map = {
         'page-home': 'bnav-home',
         'page-product': 'bnav-product',
+        'page-product-detail': 'bnav-product',
         'page-video': 'bnav-video',
         'page-simulator': 'bnav-simulator',
       };
@@ -1936,18 +2234,6 @@
     function setActiveNav(id) {
       document.querySelectorAll('.bottom-nav-item').forEach(b => b.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-    }
-
-    /* ─────────────────────────────────────────
-       VIDEO HANDLER
-    ───────────────────────────────────────── */
-    function loadVideo() {
-      const placeholder = document.getElementById('videoPlaceholder');
-      const wrapper = placeholder.parentElement;
-
-      // YouTube strict configurations block this from playing directly inside an iframe on local files.
-      // Easiest and most reliable fallback is opening it smoothly in a new tab.
-      window.open('https://youtube.com/shorts/nhuHVS_NWs4?feature=share', '_blank');
     }
 
     /* ─────────────────────────────────────────
@@ -2219,7 +2505,7 @@
         // Fallback or permission denial: simulate a quick scan animation over black
         setTimeout(() => {
           stopScanner();
-          goToPage('page-product');
+          loadProduct('kala-cotton');
         }, 1500);
       }
     }
@@ -2244,21 +2530,26 @@
               console.log("Decoded QR Code:", code.data);
               stopScanner();
 
-              // This checks if the QR code is exactly the YouTube link you shared, 
-              // or if it contains your specific video ID, or if it's a Canva link.
-              const isVerifiedKalaCottonQR =
-                code.data === "https://youtube.com/shorts/nhuHVS_NWs4?feature=share" ||
-                code.data.includes("nhuHVS_NWs4") ||
-                code.data.toLowerCase().includes("canva");
+              // Map QR contents to specific products based on their videos or keywords
+              const qrText = code.data;
+              let matchedProduct = null;
 
-              // Strict verification check!
-              if (isVerifiedKalaCottonQR) {
-                // Valid! Show the Kala Cotton product safely.
-                document.querySelector('.id-val').innerText = 'KYF-KTC-2024-0087';
-                goToPage('page-product');
+              if (qrText.includes('nhuHVS_NWs4') || qrText.includes('kala-cotton') || qrText.toLowerCase().includes('canva') || qrText.toLowerCase().includes('product1')) {
+                 matchedProduct = 'kala-cotton';
+              } else if (qrText.includes('ihCjuAkgZio') || qrText.includes('prmoIsUFRWo') || qrText.includes('paruthee') || qrText.toLowerCase().includes('ybbwsa') || qrText.toLowerCase().includes('product2')) {
+                 matchedProduct = 'paruthee';
+              } else if (qrText.includes('dvMfNtF3VgI') || qrText.includes('indhikoj') || qrText.toLowerCase().includes('product3')) {
+                 matchedProduct = 'indhikoj';
+              } else if (qrText.includes('Zt6-J7N5k2k') || qrText.includes('nabhaindia') || qrText.toLowerCase().includes('product4')) {
+                 matchedProduct = 'nabhaindia';
+              }
+
+              if (matchedProduct) {
+                // Valid! Show the matched product dynamically.
+                loadProduct(matchedProduct);
               } else {
                 // Invalid / some other random black-and-white QR code. Reject it!
-                alert("⚠️ Unrecognized QR Code scanned.\n\nThis app only opens the secure Kala Cotton product QR code.\n\n(Developer Note — The code you just scanned says: " + code.data + ")");
+                alert("⚠️ Unrecognized QR Code scanned.\n\nThis app only opens registered Know Your Fabric QR codes.\n\n(Developer Note — The code you just scanned says: " + code.data + ")");
               }
 
               return; // Halt the scan loop
